@@ -1,0 +1,470 @@
+/* ==================== */
+/*    GLOBAL STYLES     */
+/* ==================== */
+
+* {
+  border: none;
+  border-radius: 0;
+  font-family: "FiraCode Nerd Font", "JetBrains Mono", "Noto Sans", monospace;
+  font-size: 14px;
+  min-height: 0;
+}
+
+/* ==================== */
+/*    WAYBAR WINDOW     */
+/* ==================== */
+
+window#waybar {
+  background: rgba(25, 15, 50, 0.85);
+  border-bottom: 2px solid rgba(166, 103, 186, 0.4);
+  color: #ffffff;
+}
+
+/* ==================== */
+/*  LEFT: LOGO & WORKSPACES */
+/* ==================== */
+
+#custom-logo {
+  background-image: url("/home/blasley/Pictures/99012-nyan-cat-png-image-high-quality-3631329820.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  min-width: 20px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  margin-left: 4px;
+  padding: 2px 6px;
+}
+
+#custom-workspaces {
+  padding: 2px 4px;
+  font-size: 14px;
+  color: rgba(255, 207, 73, 1);
+}
+
+/* ==================== */
+/*  LEFT: SCRATCHPADS   */
+/* ==================== */
+
+#custom-scratch_term,
+#custom-scratch_discord,
+#custom-scratch_music {
+  padding: 2px 6px;
+  margin: 0;
+  background: transparent;
+  border-radius: 0;
+  font-size: 14px;
+  border: none;
+  transition: all 0.2s ease-in-out;
+}
+
+#custom-scratch_term:hover,
+#custom-scratch_discord:hover,
+#custom-scratch_music:hover {
+  background: rgba(100, 58, 147, 0.4);
+  color: #ffffff;
+}
+
+#custom-scratch_term {
+  color: rgba(166, 203, 186, 0.95);
+}
+
+#custom-scratch_discord {
+  color: rgba(114, 137, 218, 0.95);
+}
+
+#custom-scratch_music {
+  color: rgba(255, 136, 0, 0.95);
+}
+
+/* ==================== */
+/* CENTER: CLOCK BUTTON */
+/* ==================== */
+
+#custom-clock_btn {
+  padding: 2px 8px;
+  background: transparent;
+  color: #ffffff;
+  border-radius: 0;
+  font-weight: 600;
+  font-size: 12px;
+  border: none;
+  transition: all 0.2s ease-in-out;
+}
+
+#custom-clock_btn:hover {
+  background: rgba(100, 58, 147, 0.4);
+}
+
+/* ==================== */
+/*  RIGHT: ALL BUTTONS  */
+/* ==================== */
+
+#custom-power_btn,
+#custom-audio_btn,
+#custom-bluetooth_btn,
+#custom-network_btn,
+#custom-display_btn,
+#custom-battery_btn,
+#custom-system_btn {
+  padding: 2px 6px;
+  margin: 0;
+  background: transparent;
+  color: rgba(200, 180, 220, 0.95);
+  border-radius: 0;
+  font-size: 14px;
+  border: none;
+  transition: all 0.2s ease-in-out;
+}
+
+#customer-power_btn:hover,
+#custom-audio_btn:hover,
+#custom-bluetooth_btn:hover,
+#custom-network_btn:hover,
+#custom-display_btn:hover,
+#custom-battery_btn:hover,
+#custom-system_btn:hover {
+  background: rgba(100, 58, 147, 0.4);
+  color: #ffffff;
+}
+
+#custom-cava {
+  margin-left: 12px;
+  color: rgba(255, 207, 73, 0.95);
+  /* gold */
+}
+
+/* Individual button colors */
+#custom-audio_btn {
+  color: rgba(129, 212, 250, 0.95);
+  /* light blue - sound waves */
+}
+
+/* Individual button colors */
+#custom-power_btn {
+  color: rgba(223, 9, 56, 0.95);
+}
+
+#custom-bluetooth_btn {
+  color: rgba(100, 149, 237, 0.95);
+  /* bluetooth blue */
+}
+
+#custom-network_btn {
+  color: rgba(129, 199, 132, 0.95);
+  /* green - connected */
+}
+
+#custom-display_btn {
+  color: rgba(186, 166, 220, 0.95);
+  /* soft purple - screen glow */
+}
+
+#custom-battery_btn {
+  color: rgba(255, 213, 79, 0.95);
+  /* gold/yellow - energy */
+}
+
+#custom-system_btn {
+  color: rgba(255, 138, 128, 0.95);
+  /* coral/red - system */
+}
+
+#custom-colorpicker {
+  color: rgba(255, 200, 100, 0.95);
+  padding: 2px 6px;
+}
+
+#custom-colorpicker:hover {
+  background: rgba(100, 58, 147, 0.4);
+}
+
+/* Mic indicator */
+#custom-mic {
+  padding: 2px 6px;
+}
+
+#custom-mic.mic-active {
+  color: rgba(255, 100, 100, 0.95);
+}
+
+#custom-mic.mic-inactive {
+  color: rgba(100, 100, 100, 0.4);
+}
+
+/* Camera indicator */
+#custom-camera {
+  padding: 2px 6px;
+}
+
+#custom-camera.cam-active {
+  color: rgba(255, 100, 100, 0.95);
+}
+
+#custom-camera.cam-inactive {
+  color: rgba(100, 100, 100, 0.4);
+}
+
+/* Weather animations */
+#custom-weather {
+  padding: 2px 8px;
+  font-size: 14px;
+}
+
+#custom-weather.sunny {
+  color: rgba(255, 207, 73, 0.95);
+  animation: pulse-sun 2s ease-in-out infinite;
+}
+
+#custom-weather.rain {
+  color: rgba(129, 212, 250, 0.95);
+  animation: drip 0.5s ease-in-out infinite;
+}
+
+#custom-weather.snow {
+  color: rgba(200, 220, 255, 0.95);
+  animation: drift 3s ease-in-out infinite;
+}
+
+#custom-weather.storm {
+  color: rgba(255, 230, 100, 0.95);
+  animation: flash 0.3s ease-in-out infinite;
+}
+
+#custom-weather.cloudy {
+  color: rgba(180, 180, 200, 0.95);
+}
+
+#custom-weather.foggy {
+  color: rgba(150, 150, 170, 0.7);
+}
+
+#custom-weather.windy {
+  color: rgba(170, 210, 230, 0.95);
+}
+
+/* Weather animations */
+#custom-weather {
+  padding: 2px 8px;
+  font-size: 14px;
+  transition: all 0.3s ease-in-out;
+}
+
+#custom-weather.sunny {
+  color: rgba(255, 207, 73, 0.95);
+}
+
+#custom-weather.rain {
+  color: rgba(129, 212, 250, 0.95);
+}
+
+#custom-weather.snow {
+  color: rgba(200, 220, 255, 0.95);
+}
+
+#custom-weather.storm {
+  color: rgba(255, 230, 100, 0.95);
+}
+
+#custom-weather.cloudy {
+  color: rgba(180, 180, 200, 0.95);
+}
+
+#custom-weather.foggy {
+  color: rgba(150, 150, 170, 0.7);
+}
+
+#custom-weather.windy {
+  color: rgba(170, 210, 230, 0.95);
+}
+
+#custom-weather:hover {
+  background: rgba(100, 58, 147, 0.4);
+}
+/* ==================== */
+/*     SYSTEM TRAY      */
+/* ==================== */
+
+#tray {
+  padding: 2px 6px;
+  margin-left: 4px;
+}
+
+#tray > .passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
+  background-color: rgba(255, 207, 73, 0.3);
+}
+
+/* ==================== */
+/*      TOOLTIPS        */
+/* ==================== */
+
+tooltip {
+  background: rgba(37, 26, 71, 0.95);
+  border: 1px solid rgba(166, 103, 186, 0.4);
+  border-radius: 5px;
+  padding: 4px 6px;
+}
+
+tooltip label {
+  color: rgba(251, 207, 73, 0.95);
+  font-family: "FiraCode Nerd Font", "JetBrains Mono", monospace;
+  font-size: 10px;
+}
+
+/* Volume-reactive audio button colors */
+#custom-audio_btn.vol-low {
+  color: rgba(103, 186, 130, 0.95);
+  /* green */
+}
+
+#custom-audio_btn.vol-mid {
+  color: rgba(166, 103, 186, 0.95);
+  /* purple */
+}
+
+#custom-audio_btn.vol-warning {
+  color: rgba(251, 207, 73, 0.95);
+  /* gold */
+}
+
+#custom-audio_btn.vol-high {
+  color: rgba(255, 100, 100, 0.95);
+  /* red */
+}
+
+#custom-audio_btn.muted {
+  color: rgba(255, 100, 100, 0.5);
+  /* dim red */
+}
+
+/* Bluetooth state colors */
+#custom-bluetooth_btn.bt-connected {
+  color: rgba(100, 149, 237, 0.95);
+  /* blue - connected */
+}
+
+#custom-bluetooth_btn.bt-on {
+  color: rgba(103, 186, 130, 0.95);
+  /* green - on but not connected */
+}
+
+#custom-bluetooth_btn.bt-off {
+  color: rgba(255, 100, 100, 0.95);
+  /* red - off */
+}
+
+/* Network state colors */
+#custom-network_btn.net-off {
+  color: rgba(255, 100, 100, 0.95);
+  /* red - off */
+}
+
+#custom-network_btn.net-disconnected {
+  color: rgba(255, 180, 100, 0.95);
+  /* orange - on but not connected */
+}
+
+#custom-network_btn.net-poor {
+  color: rgba(255, 180, 100, 0.95);
+  /* orange - weak signal */
+}
+
+#custom-network_btn.net-weak {
+  color: rgba(251, 207, 73, 0.95);
+  /* yellow */
+}
+
+#custom-network_btn.net-good {
+  color: rgba(180, 207, 100, 0.95);
+  /* yellow-green */
+}
+
+#custom-network_btn.net-strong {
+  color: rgba(103, 186, 130, 0.95);
+  /* green - strong signal */
+}
+
+/* Battery state colors */
+#custom-battery_btn.bat-full {
+  color: rgba(103, 186, 130, 0.95);
+  /* green */
+}
+
+#custom-battery_btn.bat-good {
+  color: rgba(180, 207, 100, 0.95);
+  /* yellow-green */
+}
+
+#custom-battery_btn.bat-mid {
+  color: rgba(251, 207, 73, 0.95);
+  /* yellow */
+}
+
+#custom-battery_btn.bat-low {
+  color: rgba(255, 180, 100, 0.95);
+  /* orange */
+}
+
+#custom-battery_btn.bat-critical {
+  color: rgba(255, 100, 100, 0.95);
+  /* red */
+}
+
+/* System load colors */
+#custom-system_btn.sys-idle {
+  color: rgba(103, 186, 130, 0.95);
+  /* green - chill */
+}
+
+#custom-system_btn.sys-low {
+  color: rgba(180, 207, 100, 0.95);
+  /* yellow-green */
+}
+
+#custom-system_btn.sys-mid {
+  color: rgba(251, 207, 73, 0.95);
+  /* yellow */
+}
+
+#custom-system_btn.sys-high {
+  color: rgba(255, 180, 100, 0.95);
+  /* orange */
+}
+
+#custom-system_btn.sys-critical {
+  color: rgba(255, 100, 100, 0.95);
+  /* red - hammered */
+}
+
+/* Display state colors */
+#custom-display_btn.display-connected {
+  color: rgba(186, 166, 220, 0.95);
+  /* soft purple - your current color */
+}
+
+#custom-display_btn.display-none {
+  color: rgba(255, 100, 100, 0.95);
+  /* red - no external */
+}
+
+#custom-news {
+  color: #ffffff;
+  padding: 2px 8px;
+  min-width: 300px;
+  font-size: 10px;
+}
+
+#custom-news:hover {
+  background: rgba(100, 58, 147, 0.4);
+}
+
+#custom-network_btn.net-ethernet {
+  color: rgba(129, 199, 132, 0.95);
+  /* green - ethernet connected */
+}
+

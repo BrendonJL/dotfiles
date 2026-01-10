@@ -1,0 +1,66 @@
+;; -----------------------------
+;;  SYSTEM POPUP
+;; -----------------------------
+
+;; Poll for system stats
+(defpoll sys_cpu :interval "1s"
+  `top -bn1 | grep "Cpu(s)" | awk '{print int($2 + $4)}'`)
+(defpoll sys_mem :interval "5s"
+  `free | awk '/Mem:/ {printf "%.0f", $3/$2 * 100}'`)
+(defpoll sys_disk :interval "10s"
+  `df /home | awk 'NR==2 {gsub("%",""); print $5}'`)
+(defpoll sys_mem_used :interval "5s"
+  `free -h | awk '/Mem:/ {print $3}'`)
+(defpoll sys_mem_total :interval "30s"
+  `free -h | awk '/Mem:/ {print $2}'`)
+(defpoll sys_disk_used :interval "30s"
+  `df -h /home | awk 'NR==2 {print $3}'`)
+(defpoll sys_disk_total :interval "30s"
+  `df -h /home | awk 'NR==2 {print $2}'`)
+
+(defwindow system_popup
+  :geometry (geometry
+              :width 120
+              :height 90
+              :anchor "top left"
+              :x 0
+              :y 0)
+  :stacking "overlay"
+  :exclusive false
+  :focusable false
+  :namespace "eww_popup"
+  (system-widget))
+
+(defwidget system-widget []
+  (box :class "system-popup"
+       :orientation "vertical"
+       :space-evenly false
+       :spacing 4
+
+    ;; Header with btop button
+    (box :orientation "horizontal" 
+         :space-evenly false 
+         :spacing 4
+      (label :class "system-title" :text "󰄪 System")
+      (box :halign "end" :hexpand true
+        (button :class "system-mgr-btn"
+                :onclick "konsole --profile Ricedupbtop -e btop &"
+                "󰒓")))
+
+    ;; CPU
+    (box :orientation "horizontal" :space-evenly false :spacing 4
+      (label :class "sys-label" :text "CPU:")
+      (label :class "sys-value" :text "${sys_cpu}%"))
+
+    ;; Memory
+    (box :orientation "horizontal" :space-evenly false :spacing 4
+      (label :class "sys-label" :text "Mem:")
+      (label :class "sys-value" :text "${sys_mem}%")
+      (label :class "sys-detail" :text "(${sys_mem_used}/${sys_mem_total})"))
+
+    ;; Disk
+    (box :orientation "horizontal" :space-evenly false :spacing 4
+      (label :class "sys-label" :text "Disk:")
+      (label :class "sys-value" :text "${sys_disk}%")
+      (label :class "sys-detail" :text "(${sys_disk_used}/${sys_disk_total})"))
+  ))

@@ -1,0 +1,68 @@
+;; -----------------------------
+;;  DISPLAY POPUP
+;; -----------------------------
+
+;; Poll for display state
+(defpoll display_brightness :interval "2s"
+  `brightnessctl -m | cut -d',' -f4 | tr -d '%' || echo "100"`)
+(defpoll display_count :interval "10s"
+  `hyprctl monitors -j | jq 'length'`)
+(defpoll display_mon1 :interval "10s"
+  `hyprctl monitors -j | jq -r 'if .[0] then .[0] | .name + " " + (.width|tostring) + "x" + (.height|tostring) else "" end' 2>/dev/null`)
+(defpoll display_mon2 :interval "10s"
+  `hyprctl monitors -j | jq -r 'if .[1] then .[1] | .name + " " + (.width|tostring) + "x" + (.height|tostring) else "" end' 2>/dev/null`)
+(defpoll display_mon3 :interval "10s"
+  `hyprctl monitors -j | jq -r 'if .[2] then .[2] | .name + " " + (.width|tostring) + "x" + (.height|tostring) else "" end' 2>/dev/null`)
+
+(defwindow display_popup
+  :geometry (geometry
+              :width 150
+              :height 115
+              :anchor "top left"
+              :x 0
+              :y 0)
+  :stacking "overlay"
+  :exclusive false
+  :focusable false
+  :namespace "eww_popup"
+  (display-widget))
+
+(defwidget display-widget []
+  (box :class "display-popup"
+       :orientation "vertical"
+       :space-evenly false
+       :spacing 4
+
+    ;; Header with settings
+    (box :orientation "horizontal" 
+         :space-evenly false 
+         :spacing 4
+      (label :class "display-title" :text "󰍹 Display")
+      (box :halign "end" :hexpand true
+        (button :class "display-mgr-btn"
+        :onclick "if pgrep wdisplays; then pkill wdisplays; else wdisplays & fi"
+        "󰒓")))
+
+    ;; Monitors list
+    (box :orientation "vertical" :space-evenly false :spacing 2
+      (label :class "display-mon" :text display_mon1 :visible {display_mon1 != ""})
+      (label :class "display-mon" :text display_mon2 :visible {display_mon2 != ""})
+      (label :class "display-mon" :text display_mon3 :visible {display_mon3 != ""}))
+
+    ;; Brightness (laptop backlight)
+    (box :orientation "horizontal" :space-evenly false :spacing 4
+      (label :class "display-label" :text "Laptop:")
+      (label :class "display-value" :text "${display_brightness}%"))
+
+    ;; Brightness controls
+    (box :orientation "horizontal" :space-evenly true :spacing 4
+      (button :class "display-btn"
+              :onclick "brightnessctl set 10%-"
+              "−")
+      (button :class "display-btn"
+              :onclick "brightnessctl set 50%"
+              "󰃟")
+      (button :class "display-btn"
+              :onclick "brightnessctl set 10%+"
+              "+"))
+  ))

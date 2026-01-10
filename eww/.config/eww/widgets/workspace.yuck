@@ -1,0 +1,50 @@
+;; -----------------------------
+;; WORKSPACE POPUP
+;; -----------------------------
+
+(defwindow workspace_popup
+  :geometry (geometry
+              :width 70
+              :height 110
+              :anchor "top left"
+              :x 0
+              :y 0)
+  :stacking "overlay"
+  :exclusive false
+  :focusable false
+  :namespace "eww_popup"
+  (workspace-widget))
+
+;; -----------------------------
+;; WORKSPACE WIDGET
+;; -----------------------------
+
+(defpoll current-workspace :interval "500ms" "hyprctl activeworkspace -j | jq -r '.id'")
+
+(defwidget workspace-widget []
+  (box :class "picker-popup"
+       :orientation "v"
+       :space-evenly false
+    (scroll :height 120
+      (box :orientation "v"
+           :space-evenly false
+        (button :class "picker-item ${current-workspace == '1' ? 'active' : ''}"
+                :onclick "hyprctl dispatch workspace 1 && eww close workspace_popup" "1")
+        (button :class "picker-item ${current-workspace == '2' ? 'active' : ''}"
+                :onclick "hyprctl dispatch workspace 2 && eww close workspace_popup" "2")
+        (button :class "picker-item ${current-workspace == '3' ? 'active' : ''}"
+                :onclick "hyprctl dispatch workspace 3 && eww close workspace_popup" "3")
+        (button :class "picker-item ${current-workspace == '4' ? 'active' : ''}"
+                :onclick "hyprctl dispatch workspace 4 && eww close workspace_popup" "4")
+        (button :class "picker-item ${current-workspace == '5' ? 'active' : ''}"
+                :onclick "hyprctl dispatch workspace 5 && eww close workspace_popup" "5")
+        (button :class "picker-item ${current-workspace == '6' ? 'active' : ''}"
+                :onclick "hyprctl dispatch workspace 6 && eww close workspace_popup" "6")
+        (button :class "picker-item ${current-workspace == '7' ? 'active' : ''}"
+                :onclick "hyprctl dispatch workspace 7 && eww close workspace_popup" "7")
+        (button :class "picker-item ${current-workspace == '8' ? 'active' : ''}"
+                :onclick "hyprctl dispatch workspace 8 && eww close workspace_popup" "8")
+        (button :class "picker-item ${current-workspace == '9' ? 'active' : ''}"
+                :onclick "hyprctl dispatch workspace 9 && eww close workspace_popup" "9")
+        (button :class "picker-item ${current-workspace == '10' ? 'active' : ''}"
+                :onclick "hyprctl dispatch workspace 10 && eww close workspace_popup" "10")))))

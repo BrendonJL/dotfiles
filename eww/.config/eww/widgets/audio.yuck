@@ -1,0 +1,69 @@
+;; -----------------------------
+;;  AUDIO POPUP
+;; -----------------------------
+
+;; Variables for audio state
+(defpoll audio_vol :interval "1s" "pamixer --get-volume")
+(defpoll audio_muted :interval "1s" "pamixer --get-mute")
+(defpoll audio_sink :interval "5s" "pactl list sinks | grep -A 5 \"$(pactl get-default-sink)\" | grep Description | cut -d: -f2 | sed 's/^ //' | cut -c1-25")
+(defpoll audio_playing :interval "2s" "playerctl -a metadata --format '{{status}}: {{title}}' 2>/dev/null | grep 'Playing' | head -1 | sed 's/Playing: //' | cut -c1-25 || echo 'None'")
+
+(defwindow audio_popup
+  :geometry (geometry
+              :width 150
+              :height 110
+              :anchor "top left"
+              :x 0
+              :y 0)
+  :stacking "overlay"
+  :exclusive false
+  :focusable false
+  :namespace "eww_popup"
+  (audio-widget))
+  
+(defwidget audio-widget []
+  (box :class "audio-popup"
+       :orientation "vertical"
+       :space-evenly false
+       :spacing 6
+
+    ;; Header
+    (box :class "popup-header" :orientation "horizontal"
+      (label :class "audio-title" :text "󰕾 Audio"))
+
+    ;; Current output device
+    (box :orientation "horizontal" :space-evenly false :spacing 4
+      (label :class "audio-label-sm" :text "Output:")
+      (label :class "audio-device-sm" :text audio_sink))
+
+    ;; Now playing
+    (box :orientation "horizontal" :space-evenly false :spacing 4
+      (label :class "audio-label-sm" :text "Playing:")
+      (label :class "audio-device-sm" :text audio_playing))
+
+    ;; Volume display and slider
+    (box :orientation "vertical" :space-evenly false :spacing 3
+      (box :orientation "horizontal" :space-evenly false :spacing 6
+        (label :class "audio-label-sm" :text "Volume:")
+        (label :class "audio-value-sm ${audio_muted == 'true' ? 'muted' : ''}" 
+               :text "${audio_muted == 'true' ? 'Muted' : '${audio_vol}%'}"))
+      
+     ;; Volume bar
+      (box :class "volume-bar-bg-sm"
+        (box :class "volume-bar-fill-sm ${audio_muted == 'true' ? 'muted' : ''}"
+             :halign "start"
+             :style "min-width: ${audio_vol * 1.6}px;")))
+
+    ;; Control buttons
+    (box :orientation "horizontal" :space-evenly true :spacing 4
+      (button :class "audio-btn-sm" :onclick "pamixer -d 5 && ~/.config/eww/scripts/render-audiopopup.sh" "󰝞")
+      (button :class "audio-btn-sm ${audio_muted == 'true' ? 'active' : ''}" 
+              :onclick "pamixer -t && ~/.config/eww/scripts/render-audiopopup.sh" 
+              "${audio_muted == 'true' ? '󰝟' : '󰕾'}")
+      (button :class "audio-btn-sm" :onclick "pamixer -i 5 && ~/.config/eww/scripts/render-audiopopup.sh" "󰝝"))
+
+   ;; Settings buttons
+    (box :orientation "horizontal" :space-evenly true :spacing 4
+      (button :class "audio-settings-btn-sm" :onclick "hyprctl dispatch togglespecialworkspace audio" "Settings")
+      (button :class "audio-settings-btn-sm" :onclick "hyprctl dispatch togglespecialworkspace eq" "EQ"))
+  ))

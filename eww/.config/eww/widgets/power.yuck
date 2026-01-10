@@ -1,0 +1,43 @@
+;; -----------------------------
+;;  POWER POPUP
+;; -----------------------------
+
+(defwindow power_popup
+  :geometry (geometry
+              :width 30
+              :height 50
+              :anchor "top left"
+              :x 0
+              :y 0)
+  :stacking "overlay"
+  :exclusive false
+  :focusable false
+  :namespace "eww_popup"
+  (power-widget))
+
+(defwidget power-widget []
+  (box
+    :class "power-popup"
+    :orientation "horizontal"
+    :spacing 6
+    :halign "center"
+    :valign "center"
+
+    (button
+      :class "power-btn lock"
+      :tooltip "Lock Screen"
+      :onclick "hyprctl dispatch exec hyprlock"
+      "󰌾")
+
+    (button
+      :class "power-btn reboot"
+      :tooltip "Reboot"
+      :onclick "systemctl reboot"
+      "󰜉")
+
+    (button
+      :class "power-btn shutdown"
+      :tooltip "Shutdown"
+      :onclick "systemctl poweroff"
+      "󰐥")
+  ))

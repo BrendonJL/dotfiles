@@ -1,0 +1,65 @@
+(defvar splash_frame 0)
+
+(defpoll current_frame :interval "100ms"  
+  `echo $(($(date +%s%3N) / 100 % 198))`)  
+
+; Monitor 0 (main)
+(defwindow splash
+  :monitor 0
+  :geometry (geometry 
+    :width "100%" 
+    :height "100%")
+  :stacking "overlay"
+  :exclusive false
+  :focusable true
+  (overlay
+    (box 
+      :class "splash-bg"
+      :style "background-color: #000000;")
+    (box 
+      :valign "center"
+      :halign "center"
+      (image 
+        :path "/home/blasley/.config/eww/splash/animation-${current_frame == 0 ? 1 : current_frame}.png"
+        :image-width 400
+        :image-height 400))))
+
+; Monitor 1
+(defwindow splash-1
+  :monitor 1
+  :geometry (geometry 
+    :width "100%" 
+    :height "100%")
+  :stacking "overlay"
+  :exclusive false
+  :focusable true
+  (overlay
+    (box 
+      :style "background-color: #000000;")
+    (box 
+      :valign "center"
+      :halign "center"
+      (image 
+        :path "/home/blasley/.config/eww/splash/animation-${current_frame == 0 ? 1 : current_frame}.png"
+        :image-width 400
+        :image-height 400))))
+
+; Monitor 2
+(defwindow splash-2
+  :monitor 2
+  :geometry (geometry 
+    :width "100%" 
+    :height "100%")
+  :stacking "overlay"
+  :exclusive false
+  :focusable true
+  (overlay
+    (box 
+      :style "background-color: #000000;")
+    (box 
+      :valign "center"
+      :halign "center"
+      (image 
+        :path "/home/blasley/.config/eww/splash/animation-${current_frame == 0 ? 1 : current_frame}.png"
+        :image-width 400
+        :image-height 400))))

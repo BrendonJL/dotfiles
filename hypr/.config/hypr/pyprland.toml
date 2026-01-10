@@ -1,0 +1,10 @@
+[pyprland]
+plugins = ["fetch_client_menu"]
+
+[fetch_client_menu]
+engine = "rofi"
+parameters = "-dmenu -i -p '[prompt]'"
+separator = ""
+
+
+
