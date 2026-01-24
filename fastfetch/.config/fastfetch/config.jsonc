@@ -1,0 +1,285 @@
+//__________              .__          .__
+//\______   \ ____   ____ |  |__  __ __|  |
+// |    |  _//  _ \ / ___\|  |  \|  |  \  |
+// |    |   (  <_> ) /_/  >   Y  \  |  /  |__
+// |______  /\____/\___  /|___|  /____/|____/
+//        \/      /_____/      \/
+//
+// https://github.com/Boghul?tab=repositories
+// Original layout  https://github.com/jan-rex/my-fastfetch-config by jan-rex
+// Modified from: https://github.com/fastfetch-cli/fastfetch/blob/dev/presets/examples/24.jsonc by CarterLi
+// Modified, colorized, media, player, weather, os age, percent-bar, symbols... by Boghul 2025-11-23
+//colors changeable over {#number}
+//darken the output over {#2} (doesnt worked for datetime option)
+//flashing the output {#5} not used here
+//changed the color format to rgb for kitty support
+
+{
+    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+    "logo": {
+  "type": "auto",
+  "source": "/home/blasley/Downloads/candy3.txt",
+
+  "padding": {
+    "top": 1,
+    "left": 2,
+    "right": 4
+  },
+
+  "color": {
+    // $1 – main body: neon pink
+    "1": "#FF2E63",
+
+    // $2 – deeper accents / shadows: neon cyan
+    "2": "#00F5FF",
+
+    // $3 – outline/glow: neon lime
+    "3": "#39FF14",
+
+    // $4 – secondary highlights: neon yellow
+    "4": "#FFE761",
+
+    // $5 – extra pop: hot magenta-red
+    "5": "#FF2E63",
+
+    // $8 – final details: very light almost-white
+    "8": "#F5F5FF"
+  }
+},
+
+    "display": {
+      //representation of the percent-bar of disk, memory and swap
+           "bar": {
+           "border": {
+           "left": "",
+           "right": "",
+           },
+           "char": {
+           "elapsed": "▼",
+           "total": "△",
+           },
+           "width": 10
+           },
+           "percent": {
+           "type": 3,
+           "color": {
+           "green": "yellow",
+           "yellow": "cyan"
+           },
+           "ndigits": 2,
+       },
+       "separator": "",
+       "constants": [
+        // CONSTANT {$1} - COLOR BACKGROUND FOR KEY set to black current
+        "\u001b[48;2;0;0;0m",
+        // CONSTANT {$2} - COLOR BACKGROUND FOR OUTPUT set to black current
+        "\u001b[00;0;0;0;00m",
+        // CONSTANT {$3} - VERTICAL BARS AT START AND 75th CHARACTERS FORWARD AND BACKWARD green
+        "\u001b[38;2;0;128;0m│                                                            │\u001b[60D\u001b[39m",
+        // CONSTANT {$4} - VERTICAL BARS AT START AND 75th CHARACTERS FORWARD AND BACKWARD magenta
+        "\u001b[38;2;255;0;255m│                                                            │\u001b[60D\u001b[39m",
+        // CONSTANT {$5} - VERTICAL BARS AT START AND 75th CHARACTERS FORWARD AND BACKWARD yellow
+        "\u001b[38;2;255;255;0m│                                                            │\u001b[60D\u001b[39m",
+        // CONSTANT {$6} - VERTICAL BARS AT START AND 75th CHARACTERS FORWARD AND BACKWARD cyan
+        "\u001b[38;2;0;255;255m│                                                            │\u001b[60D\u001b[39m",
+        // CONSTANT {$7} - VERTICAL BARS AT START AND 75th CHARACTERS FORWARD AND BACKWARD grey
+        "\u001b[38;2;128;128;128m│                                                            │\u001b[60D\u001b[39m",
+        // CONSTANT {$8} - VERTICAL BARS AT START AND 75th CHARACTERS FORWARD AND BACKWARD orange
+        "\u001b[38;2;255;69;0m│                                                            │\u001b[60D\u001b[39m",
+
+         // CONSTANT {$9} - set color orange
+        "\u001b[38;2;255;69;0m",
+         // CONSTANT {$10} - set color grey
+        "\u001b[38;2;128;128;128m",
+        // CONSTANT {$11} - set color cyan
+        "\u001b[38;2;0;255;255m",
+         // CONSTANT {$12} - set color yellow
+        "\u001b[38;2;255;255;0m",
+         // CONSTANT {$13} - set color magenta
+        "\u001b[38;2;255;0;255m",
+        // CONSTANT {$14} - set color green
+        "\u001b[38;2;0;128;0m",
+      ]
+    },
+        "modules": [
+          // CUSTOM - Top UI bar
+        {
+          "type": "custom",
+          "key": "{$1}{$14}╭─────────────╮",
+          "format": "{$2}{$13}╭────────────────────────────────────────────────────────────╮",
+        },
+        {
+          "type": "users",
+          "key": "{$1}{$14}│ ╭ 󱚢 {$13}User    {$14}│", //txt in box on the left
+          "myselfOnly": true,
+          "format": "{$2}{$4}{$14}{1}@{host-name}{/host-name}LV426{/}{?client-ip} {#2}[IP:{client-ip}]{?} {#2}[Login time: {login-time}]" //txt in box on the right, change LV426 to your @alias
+        },
+         {
+        // localip IPv4
+        "type": "localip",
+        "key": "{$1}{$14}│ ├ 󱃅 {$13}IPv6    {$14}│",
+        "showPrefixLen": true,
+        "showIpv4": false,
+        "showIpv6": true,
+        "showMtu": true,
+        "format": "{$2}{$4}{$14}{ifname}:   {#2}[{ipv6}]"
+      },
+        {
+          "type": "os",
+          "key": "{$1}{$14}│ ├ ☢ {$13}OS      {$14}│",
+          "format": "{$2}{$4}{$14}{name} {version-id} {#2}[{variant}]"
+        },
+        {
+          "type": "kernel",
+          "key": "{$1}{$14}│ ├  {$13}Kernel  {$14}│",
+          "format": "{$2}{$4}{$14}v{release} {#2}[{page-size}]"
+        },
+          {
+            "key": "{$1}{$13}│ ├ {$13}󱂬 {$14}WM      {$13}│",
+            "keyColor": "38;5;44",
+            "type": "wm",
+            "format": "{$2}{$3}{$13}{pretty-name}{#2}{version} [{protocol-name}]"
+        },
+        {
+          "type": "shell",
+          "key": "{$1}{$13}│ ├  {$14}Shell   {$13}│",
+          "format": "{$2}{$3}{$13}{pretty-name}  {#2}{$13}[v{version}]"
+        },
+        {
+          "type": "terminal",
+          "key": "{$1}{$13}│ ├  {$14}Terminal{$13}│",
+          "format": "{$2}{$3}{$13}{pretty-name}  {#2}[v{version}]"
+        },
+        {
+          "type": "terminalfont",
+          "key": "{$1}{$13}│ └ 󰛖 {$14}Font    {$13}│",
+          "format": "{$2}{$3}{$13}{name} {#2}[{size}]"
+        },
+          // CUSTOM - Button UI bar
+        {
+          "type": "custom",
+          "key": "{$1}{$13}╰─────────────╯",
+          "format": "{$2}{$14}╰────────────────────────────────────────────────────────────╯",
+        },
+        {
+          "type": "custom",
+          "key": "{$1}{$12}╭─────────────╮",
+          "format": "{$2}{$11}╭────────────────────────────────────────────────────────────╮",
+        },
+        {
+          "type": "host",
+          "key": "{$1}{$12}│ ╭  {$11}Board   {$12}│",
+          "format": "{$6}{$2}{$12}{name}   {#2}[{vendor}]"
+        },
+        {
+          "type": "cpu",
+          "key": "{$12}{$1}│ ├  {$11}CPU     {$12}│",
+          "showPeCoreCount": true,
+          "temp": true,   //only if supported
+          "format": "{$6}{$2}{$12}{name}  {#2}[C:{core-types}] [{freq-max}]"
+        },
+        {
+          "type": "gpu",
+          "key": "{$12}{$1}│ ├ 󰢮 {$11}GPU     {$12}│",
+          "detectionMethod": "auto",
+          "driverSpecific": true,
+          "format": "{$6}{$2}{$12}{name} {#2}[C:{core-count}]{?frequency} [{frequency}]{?}"
+        },
+        {
+          "type": "memory",
+          "key": "{$12}{$1}│ ├  {$11}Memory  {$12}│",
+          "format": "{$6}{$2}{$12}{used} / {total} {#2}{percentage-bar}{$2}",
+        },
+        {
+          "type": "disk",
+          "key": "{$11}{$1}│ ├ 󰋊 {$12}Disk    {$11}│",
+          "format": "{$2}{$5}{$11}{size-used} / {size-total} {#2}{size-percentage-bar}"
+        },
+
+        {
+          "type": "disk",
+          "folders": "2TB_Festplatte", // name of your outher disk
+          "key": "{$11}{$1}│ ├ 󰋊 {$12}Disk    {$11}│",
+          "format": "{$2}{$5}{$11}{size-used} / {size-total} {#2}{size-percentage-bar}"
+        },
+
+        {
+          "type": "swap",
+          "key": "{$11}{$1}│ └ 󰓡 {$12}Swap    {$11}│",
+          "format": "{$2}{$5}{$11}{used} / {total} {#2}{percentage-bar}"
+        },
+        {
+          "type": "custom",
+          "key": "{$1}{$11}╰─────────────╯",
+          "format": "{$2}{#93}╰────────────────────────────────────────────────────────────╯",
+        },
+        {
+          "type": "custom",
+          "key": "{$1}{$10}╭─────────────╮",
+          "format": "{$2}{$9}╭────────────────────────────────────────────────────────────╮",
+        },
+        {
+          "type": "media",
+          "key": "{$10}{$1}│ ╭ 󰝚 {$9}Media   {$10}│",
+          "keyColor": "38;2;255;0;0",
+          "format": "{$2}{$8}{$10}{Artist} - {title}"
+        },
+        {
+          "type": "player",
+          "key": "{$10}{$1}│ ├ 󰥠 {$9}Player  {$10}│",
+          "keyColor": "38;2;255;0;0",
+          "format": "{$2}{$8}{$10}{player}"
+        },
+        {
+          "type": "sound",
+          "key": "{$10}{$1}│ ├  {$9}Sound   {$10}│",
+          "keyColor": "38;2;255;0;0",
+          "format": "{$2}{$8}{$10}{name} {#2}{volume-percentage-bar}",
+        },
+          //shows weather, location for your city. Somtimes not loading the information then run fasfetch again till it shows up
+        {
+    //      "type": "weather",
+          "type": "weather",
+          "key": "{$10}{$1}│ ├ 󰼲{$9} Weather {$10}│",
+          "location": "Darmstadt", // type in your city
+          "outputFormat": "%l+%t+(%f)+%c+%C+%w+%h",
+          "text": "/home/xenomorph/.local/bin/getwttr",   //i followed this instruction https://www.adamsdesk.com/posts/fastfetch-weather-data-cache/#weather-configuration
+          "format": "{$2}{$8}{$10}{result}",
+          "timeout": 1000
+        },
+        {
+          "type": "packages",
+          "key": "{$9}{$1}│ ├ 󰮯 {$10}Packages{$9}│",
+          "format": "{$2}{$7}{$9}{all} = rpm: {rpm}, + flatpak: {flatpak-all} + snap {snap}"
+        },
+          //command for calculating the os age
+        {
+          "type": "command",
+          "key": "{$9}{$1}│ {$9}├  {$10}OS Age  {$9}│",
+          "keyColor": "38;2;210;104;11",
+          "text": "birth_install=$(stat -c %W /); current=$(date +%s); time_progression=$((current - birth_install)); Days_difference=$((time_progression / 86400)); echo $Days_difference Days",
+           "format": "{$2}{$7}{$9}{result}"
+        },
+          {
+          "type": "uptime",
+          "key": "{$9}{$1}│ ├ 󱎫 {$10}Uptime  {$9}│",
+          "format": "{$2}{$7}{$9}{?days}{days} Days + {?}{hours}:{minutes}:{seconds}:{milliseconds}"
+        },
+        {
+          "type": "datetime",
+          "key": "{$9}{$1}│ └ 󰅐 {#90}Date    {$9}│",
+          "format": "{$2}{$7}{$9}{year}-{month-pretty}-{day-in-month} {hour-pretty}:{minute-pretty}:{second-pretty}  {weekday} W{week} UTC{offset-from-utc}"
+        },
+        {
+          "type": "custom",
+          "key": "{$1}{$9}╰─────────────╯",
+          "format": "{$2}{$10}╰────────────────────────────────────────────────────────────╯",
+        },
+          //show colorful symbols
+        {
+          "type": "custom",
+          "key": " ",
+          "format": "                                                     \u001b[90m⟪  \u001b[31m■  \u001b[32m●  \u001b[33m▲  \u001b[34m△  \u001b[35m◯  \u001b[36m▢  \u001b[37m⟫ "
+        },
+    ]
+}

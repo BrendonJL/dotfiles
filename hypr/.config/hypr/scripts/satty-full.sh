@@ -7,7 +7,7 @@ OUT="$DIR/Screenshot-$(date +%F_%H-%M-%S).png"
 
 grim -t ppm - |
   satty --filename - \
-    --copy-command wl-copy \
+    --copy-command "wl-copy -t image/png" \
     --output-filename "$OUT" \
     --actions-on-enter "save-to-clipboard,save-to-file,exit" \
     --actions-on-escape "exit" \

@@ -1,0 +1,78 @@
+* {
+    bg: rgba(37, 26, 71, 0.95);
+    bg-alt: rgba(64, 29, 97, 0.9);
+    fg: #e0d4f7;
+    accent: #A667BA;
+    accent-alt: rgba(166, 103, 186, 0.5);
+    yellow: rgba(251, 207, 73, 1);
+
+    background-color: transparent;
+    text-color: @fg;
+    margin: 0;
+    padding: 0;
+    spacing: 0;
+}
+
+window {
+    /* Wide enough for 4 columns of 150px + padding/spacing */
+    width: 750px;
+    background-color: @bg;
+    border-color: @accent;
+    border-width: 3px;
+    border-radius: 20px;
+}
+
+mainbox {
+    padding: 20px;
+}
+
+inputbar {
+    background-color: @bg-alt;
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    children: [prompt, entry];
+}
+
+prompt {
+    color: @yellow;
+    margin-right: 12px;
+}
+
+entry {
+    placeholder: "Search wallpapers...";
+    placeholder-color: rgba(224, 212, 247, 0.5);
+}
+
+listview {
+    columns: 4;
+    lines: 2;
+    spacing: 10px;
+    fixed-height: true;
+    flow: horizontal;
+}
+
+element {
+    padding: 8px;
+    border-radius: 12px;
+    orientation: vertical;
+}
+
+element normal.normal {
+    background-color: transparent;
+}
+
+element selected.normal {
+    background-color: @accent-alt;
+}
+
+element-icon {
+    size: 150px;
+    horizontal-align: 0.5;
+    vertical-align: 0.5;
+}
+
+/* Hide the text completely */
+element-text {
+    enabled: false;
+}

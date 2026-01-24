@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg viewBox="0 0 50 50"
+ xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.2" baseProfile="tiny">
+<title>Qt SVG Document</title>
+<desc>Generated with Qt</desc>
+<defs>
+<radialGradient gradientUnits="userSpaceOnUse" cx="15.9821" cy="16.8386" r="16.3929" fx="15.9821" fy="16.8386" id="gradient1">
+    <stop offset="0" stop-color="#fc6e6e" stop-opacity="1" />
+    <stop offset="0.298541" stop-color="#f55a5b" stop-opacity="1" />
+    <stop offset="0.694613" stop-color="#da2e31" stop-opacity="1" />
+    <stop offset="0.922408" stop-color="#871718" stop-opacity="0.878431" />
+    <stop offset="1" stop-color="#000000" stop-opacity="0.756756" />
+</radialGradient>
+</defs>
+<g fill="none" stroke="black" stroke-width="1" fill-rule="evenodd" stroke-linecap="square" stroke-linejoin="bevel" >
+
+<g fill="#000000" fill-opacity="1" stroke="none" transform="matrix(2.27273,0,0,2.27273,-474.202,-376.174)"
+font-family="Noto Sans" font-size="10" font-weight="400" font-style="normal" 
+opacity="0.00100002" >
+<rect x="208.649" y="165.517" width="22" height="22"/>
+</g>
+
+<g fill="url(#gradient1)" stroke="none" transform="matrix(2.27273,0,0,2.27273,-474.202,-376.174)"
+font-family="Noto Sans" font-size="10" font-weight="400" font-style="normal" 
+>
+<circle cx="219.649" cy="176.616" r="10"/>
+</g>
+
+<g fill="#ffffff" fill-opacity="1" stroke="none" transform="matrix(2.27273,0,0,2.27273,-474.202,-376.174)"
+font-family="Noto Sans" font-size="10" font-weight="400" font-style="normal" 
+>
+<path vector-effect="none" fill-rule="nonzero" d="M223.146,179.539 L220.873,177.266 L223.145,174.994 C223.483,174.656 223.483,174.108 223.145,173.77 C222.807,173.432 222.259,173.432 221.921,173.77 L219.649,176.043 L217.376,173.77 C217.038,173.432 216.49,173.432 216.152,173.77 C215.815,174.108 215.815,174.656 216.153,174.994 L218.425,177.266 L216.152,179.539 C215.815,179.877 215.815,180.425 216.152,180.763 C216.322,180.932 216.543,181.017 216.764,181.017 C216.986,181.017 217.207,180.932 217.376,180.763 L219.649,178.49 L221.922,180.763 C222.091,180.932 222.312,181.017 222.534,181.017 C222.755,181.017 222.977,180.932 223.146,180.763 C223.484,180.425 223.484,179.877 223.146,179.539 L223.146,179.539"/>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="Noto Sans" font-size="10" font-weight="400" font-style="normal" 
+>
+</g>
+</g>
+</svg>

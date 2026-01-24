@@ -9,7 +9,7 @@ REGION="$(slurp -c '#A667BAff')" || exit 1
 
 grim -g "$REGION" -t ppm - |
   satty --filename - \
-    --copy-command wl-copy \
+    --copy-command "wl-copy -t image/png" \
     --output-filename "$OUT" \
     --actions-on-enter "save-to-clipboard,save-to-file,exit" \
     --actions-on-escape "exit" \

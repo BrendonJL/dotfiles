@@ -1,0 +1,39 @@
+[general]
+bars = 32
+framerate = 60
+lower_cutoff_freq = 20
+higher_cutoff_freq = 15000
+
+[input]
+method = pulse
+source = auto
+
+[output]
+method = raw
+raw_target = /dev/stdout
+data_format = ascii
+ascii_max_range = 7
+
+[color]
+gradient = 1
+gradient_count = 2
+gradient_color_1 = '#a667ba'
+gradient_color_2 = '#fbcf49'
+
+[smoothing]
+noise_reduction = 77
+monstercat = 1
+
+[eq]
+1 = 1
+2 = 1
+3 = 1
+4 = 1
+5 = 1
+6 = 1
+7 = 1
+8 = 1
+9 = 1
+10 = 1
+11 = 1
+12 = 1

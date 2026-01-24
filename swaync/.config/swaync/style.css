@@ -1,0 +1,133 @@
+* {
+    font-family: "JetBrains Mono", "Noto Sans";
+    font-size: 13px;
+}
+
+.notification {
+    background: linear-gradient(135deg, #1a1233 0%, #301545 50%, #4a2a6d 100%);
+    border: 2px solid rgba(166, 103, 186, 0.7);
+    border-radius: 14px;
+    margin: 6px;
+    padding: 0;
+}
+
+.notification .notification-default-action {
+    background: transparent;
+    border-radius: 12px;
+}
+
+.notification .notification-default-action .notification-content .text-box {
+    background: transparent;
+}
+
+.notification .notification-content {
+    background: transparent;
+    border-radius: 12px;
+}
+
+.notification-row {
+    background: transparent;
+    outline: none;
+    border-radius: 10px;
+}
+
+.notification-row .notification-background {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+.notification-group {
+    background: linear-gradient(135deg, #1a1233 0%, #301545 50%, #4a2a6d 100%);
+    border: 2px solid rgba(166, 103, 186, 0.5);
+    border-radius: 16px;
+    margin: 6px;
+    padding: 6px;
+}
+
+
+
+.notification-content {
+    padding: 10px;
+}
+
+.notification .summary {
+    color: rgba(251, 207, 73, 1);
+    font-weight: 700;
+    font-size: 13px;
+}
+
+.notification .body {
+    color: #e0d4f7;
+    margin-top: 4px;
+    font-size: 12px;
+}
+
+.notification .time {
+    color: rgba(166, 103, 186, 0.9);
+    font-size: 11px;
+}
+
+.notification label {
+    min-width: 0;
+}
+
+.close-button {
+    background: transparent;
+    border: none;
+    color: rgba(166, 103, 186, 0.8);
+    font-size: 16px;
+    padding: 4px;
+    margin: 4px;
+}
+
+.close-button:hover {
+    color: #A667BA;
+    background: rgba(166, 103, 186, 0.2);
+    border-radius: 4px;
+}
+
+
+.control-center {
+    background: linear-gradient(180deg, #251A47 0%, #401D61 50%, #643A93 100%);
+    border: 3px solid rgba(166, 103, 186, 0.7);
+    border-radius: 20px;
+    padding: 12px;
+}
+
+.control-center .notification {
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.widget-title {
+    color: rgba(251, 207, 73, 1);
+    font-weight: 700;
+    font-size: 15px;
+    margin: 8px;
+}
+
+.widget-dnd {
+    background: rgba(166, 103, 186, 0.3);
+    border-radius: 10px;
+    margin: 8px;
+    padding: 8px;
+}
+
+.widget-dnd>switch {
+    background: rgba(166, 103, 186, 0.5);
+    border-radius: 10px;
+}
+
+.widget-dnd>switch:checked {
+    background: #A667BA;
+}
+
+.notification.critical {
+    border: 2px solid rgba(255, 100, 100, 0.8);
+    background: linear-gradient(135deg, #3D1A47 0%, #612D61 50%, #934A6A 100%);
+}
+
+scrollbar {
+    opacity: 0;
+}
+

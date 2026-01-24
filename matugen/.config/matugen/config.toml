@@ -1,0 +1,20 @@
+[config]
+# Use dark mode by default
+mode = "dark"
+
+# Color scheme type - fidelity stays true to wallpaper colors
+type = "scheme-fidelity"
+
+# Reload waybar after generating colors
+[config.reload_apps_list]
+waybar = true
+
+# Waybar template - generates the style.css from template
+[templates.waybar]
+input_path = "~/.config/matugen/templates/waybar-style.css"
+output_path = "~/.config/waybar/style.css"
+
+# EWW template - generates eww.scss from template
+[templates.eww]
+input_path = "~/.config/matugen/templates/eww.scss"
+output_path = "~/.config/eww/eww.scss"
