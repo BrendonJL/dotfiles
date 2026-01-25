@@ -20,13 +20,4 @@ else
   )" || exit 1
 fi
 
-grim -g "$REGION" -t ppm - |
-  satty --filename - \
-    --copy-command "wl-copy -t image/png" \
-    --output-filename "$OUT" \
-    --actions-on-enter "save-to-clipboard,save-to-file,exit" \
-    --actions-on-escape "exit" \
-    --early-exit
-
-command -v dunstify >/dev/null 2>&1 && dunstify "Screenshot" "Saved + copied: $(basename "$OUT")" -t 1200 || true
-EOF
+grim -g "$REGION" - | satty --filename - --output-filename "$OUT"

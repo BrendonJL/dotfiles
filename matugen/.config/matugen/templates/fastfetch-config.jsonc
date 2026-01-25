@@ -1,0 +1,242 @@
+//__________              .__          .__
+//\______   \ ____   ____ |  |__  __ __|  |
+// |    |  _//  _ \ / ___\|  |  \|  |  \  |
+// |    |   (  <_> ) /_/  >   Y  \  |  /  |__
+// |______  /\____/\___  /|___|  /____/|____/
+//        \/      /_____/      \/
+//
+// Matugen-driven colors
+
+{
+    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+    "logo": {
+  "type": "auto",
+  "source": "/home/blasley/Downloads/candy3.txt",
+
+  "padding": {
+    "top": 1,
+    "left": 2,
+    "right": 4
+  },
+
+  "color": {
+    "1": "{{colors.primary.default.hex}}",
+    "2": "{{colors.tertiary.default.hex}}",
+    "3": "{{colors.secondary.default.hex}}",
+    "4": "{{colors.tertiary.default.hex}}",
+    "5": "{{colors.primary.default.hex}}",
+    "8": "{{colors.on_surface.default.hex}}"
+  }
+},
+
+    "display": {
+           "bar": {
+           "border": {
+           "left": "",
+           "right": ""
+           },
+           "char": {
+           "elapsed": "▼",
+           "total": "△"
+           },
+           "width": 10
+           },
+           "percent": {
+           "type": 3,
+           "color": {
+           "green": "yellow",
+           "yellow": "cyan"
+           },
+           "ndigits": 2
+       },
+       "separator": "",
+       "constants": [
+        "\u001b[48;2;0;0;0m",
+        "\u001b[00;0;0;0;00m",
+        "\u001b[38;2;{{colors.secondary.default.red}};{{colors.secondary.default.green}};{{colors.secondary.default.blue}}m│                                                            │\u001b[60D\u001b[39m",
+        "\u001b[38;2;{{colors.primary.default.red}};{{colors.primary.default.green}};{{colors.primary.default.blue}}m│                                                            │\u001b[60D\u001b[39m",
+        "\u001b[38;2;{{colors.tertiary.default.red}};{{colors.tertiary.default.green}};{{colors.tertiary.default.blue}}m│                                                            │\u001b[60D\u001b[39m",
+        "\u001b[38;2;{{colors.tertiary.default.red}};{{colors.tertiary.default.green}};{{colors.tertiary.default.blue}}m│                                                            │\u001b[60D\u001b[39m",
+        "\u001b[38;2;{{colors.on_surface_variant.default.red}};{{colors.on_surface_variant.default.green}};{{colors.on_surface_variant.default.blue}}m│                                                            │\u001b[60D\u001b[39m",
+        "\u001b[38;2;{{colors.secondary.default.red}};{{colors.secondary.default.green}};{{colors.secondary.default.blue}}m│                                                            │\u001b[60D\u001b[39m",
+        "\u001b[38;2;{{colors.secondary.default.red}};{{colors.secondary.default.green}};{{colors.secondary.default.blue}}m",
+        "\u001b[38;2;{{colors.on_surface_variant.default.red}};{{colors.on_surface_variant.default.green}};{{colors.on_surface_variant.default.blue}}m",
+        "\u001b[38;2;{{colors.tertiary.default.red}};{{colors.tertiary.default.green}};{{colors.tertiary.default.blue}}m",
+        "\u001b[38;2;{{colors.tertiary.default.red}};{{colors.tertiary.default.green}};{{colors.tertiary.default.blue}}m",
+        "\u001b[38;2;{{colors.primary.default.red}};{{colors.primary.default.green}};{{colors.primary.default.blue}}m",
+        "\u001b[38;2;{{colors.secondary.default.red}};{{colors.secondary.default.green}};{{colors.secondary.default.blue}}m"
+      ]
+    },
+        "modules": [
+        {
+          "type": "custom",
+          "key": "{$1}{$14}╭─────────────╮",
+          "format": "{$2}{$13}╭────────────────────────────────────────────────────────────╮"
+        },
+        {
+          "type": "users",
+          "key": "{$1}{$14}│ ╭ 󱚢 {$13}User    {$14}│",
+          "myselfOnly": true,
+          "format": "{$2}{$4}{$14}{1}@{host-name}{/host-name}LV426{/}{?client-ip} {#2}[IP:{client-ip}]{?} {#2}[Login time: {login-time}]"
+        },
+         {
+        "type": "localip",
+        "key": "{$1}{$14}│ ├ 󱃅 {$13}IPv6    {$14}│",
+        "showPrefixLen": true,
+        "showIpv4": false,
+        "showIpv6": true,
+        "showMtu": true,
+        "format": "{$2}{$4}{$14}{ifname}:   {#2}[{ipv6}]"
+      },
+        {
+          "type": "os",
+          "key": "{$1}{$14}│ ├ ☢ {$13}OS      {$14}│",
+          "format": "{$2}{$4}{$14}{name} {version-id} {#2}[{variant}]"
+        },
+        {
+          "type": "kernel",
+          "key": "{$1}{$14}│ ├  {$13}Kernel  {$14}│",
+          "format": "{$2}{$4}{$14}v{release} {#2}[{page-size}]"
+        },
+          {
+            "key": "{$1}{$13}│ ├ {$13}󱂬 {$14}WM      {$13}│",
+            "keyColor": "38;5;44",
+            "type": "wm",
+            "format": "{$2}{$3}{$13}{pretty-name}{#2}{version} [{protocol-name}]"
+        },
+        {
+          "type": "shell",
+          "key": "{$1}{$13}│ ├  {$14}Shell   {$13}│",
+          "format": "{$2}{$3}{$13}{pretty-name}  {#2}{$13}[v{version}]"
+        },
+        {
+          "type": "terminal",
+          "key": "{$1}{$13}│ ├  {$14}Terminal{$13}│",
+          "format": "{$2}{$3}{$13}{pretty-name}  {#2}[v{version}]"
+        },
+        {
+          "type": "terminalfont",
+          "key": "{$1}{$13}│ └ 󰛖 {$14}Font    {$13}│",
+          "format": "{$2}{$3}{$13}{name} {#2}[{size}]"
+        },
+        {
+          "type": "custom",
+          "key": "{$1}{$13}╰─────────────╯",
+          "format": "{$2}{$14}╰────────────────────────────────────────────────────────────╯"
+        },
+        {
+          "type": "custom",
+          "key": "{$1}{$12}╭─────────────╮",
+          "format": "{$2}{$11}╭────────────────────────────────────────────────────────────╮"
+        },
+        {
+          "type": "host",
+          "key": "{$1}{$12}│ ╭  {$11}Board   {$12}│",
+          "format": "{$6}{$2}{$12}{name}   {#2}[{vendor}]"
+        },
+        {
+          "type": "cpu",
+          "key": "{$12}{$1}│ ├  {$11}CPU     {$12}│",
+          "showPeCoreCount": true,
+          "temp": true,
+          "format": "{$6}{$2}{$12}{name}  {#2}[C:{core-types}] [{freq-max}]"
+        },
+        {
+          "type": "gpu",
+          "key": "{$12}{$1}│ ├ 󰢮 {$11}GPU     {$12}│",
+          "detectionMethod": "auto",
+          "driverSpecific": true,
+          "format": "{$6}{$2}{$12}{name} {#2}[C:{core-count}]{?frequency} [{frequency}]{?}"
+        },
+        {
+          "type": "memory",
+          "key": "{$12}{$1}│ ├  {$11}Memory  {$12}│",
+          "format": "{$6}{$2}{$12}{used} / {total} {#2}{percentage-bar}{$2}"
+        },
+        {
+          "type": "disk",
+          "key": "{$11}{$1}│ ├ 󰋊 {$12}Disk    {$11}│",
+          "format": "{$2}{$5}{$11}{size-used} / {size-total} {#2}{size-percentage-bar}"
+        },
+        {
+          "type": "disk",
+          "folders": "2TB_Festplatte",
+          "key": "{$11}{$1}│ ├ 󰋊 {$12}Disk    {$11}│",
+          "format": "{$2}{$5}{$11}{size-used} / {size-total} {#2}{size-percentage-bar}"
+        },
+        {
+          "type": "swap",
+          "key": "{$11}{$1}│ └ 󰓡 {$12}Swap    {$11}│",
+          "format": "{$2}{$5}{$11}{used} / {total} {#2}{percentage-bar}"
+        },
+        {
+          "type": "custom",
+          "key": "{$1}{$11}╰─────────────╯",
+          "format": "{$2}{#93}╰────────────────────────────────────────────────────────────╯"
+        },
+        {
+          "type": "custom",
+          "key": "{$1}{$10}╭─────────────╮",
+          "format": "{$2}{$9}╭────────────────────────────────────────────────────────────╮"
+        },
+        {
+          "type": "media",
+          "key": "{$10}{$1}│ ╭ 󰝚 {$9}Media   {$10}│",
+          "keyColor": "38;2;255;0;0",
+          "format": "{$2}{$8}{$10}{Artist} - {title}"
+        },
+        {
+          "type": "player",
+          "key": "{$10}{$1}│ ├ 󰥠 {$9}Player  {$10}│",
+          "keyColor": "38;2;255;0;0",
+          "format": "{$2}{$8}{$10}{player}"
+        },
+        {
+          "type": "sound",
+          "key": "{$10}{$1}│ ├  {$9}Sound   {$10}│",
+          "keyColor": "38;2;255;0;0",
+          "format": "{$2}{$8}{$10}{name} {#2}{volume-percentage-bar}"
+        },
+        {
+          "type": "weather",
+          "key": "{$10}{$1}│ ├ 󰼲{$9} Weather {$10}│",
+          "location": "Darmstadt",
+          "outputFormat": "%l+%t+(%f)+%c+%C+%w+%h",
+          "text": "/home/xenomorph/.local/bin/getwttr",
+          "format": "{$2}{$8}{$10}{result}",
+          "timeout": 1000
+        },
+        {
+          "type": "packages",
+          "key": "{$9}{$1}│ ├ 󰮯 {$10}Packages{$9}│",
+          "format": "{$2}{$7}{$9}{all} = rpm: {rpm}, + flatpak: {flatpak-all} + snap {snap}"
+        },
+        {
+          "type": "command",
+          "key": "{$9}{$1}│ {$9}├  {$10}OS Age  {$9}│",
+          "keyColor": "38;2;210;104;11",
+          "text": "birth_install=$(stat -c %W /); current=$(date +%s); time_progression=$((current - birth_install)); Days_difference=$((time_progression / 86400)); echo $Days_difference Days",
+           "format": "{$2}{$7}{$9}{result}"
+        },
+          {
+          "type": "uptime",
+          "key": "{$9}{$1}│ ├ 󱎫 {$10}Uptime  {$9}│",
+          "format": "{$2}{$7}{$9}{?days}{days} Days + {?}{hours}:{minutes}:{seconds}:{milliseconds}"
+        },
+        {
+          "type": "datetime",
+          "key": "{$9}{$1}│ └ 󰅐 {#90}Date    {$9}│",
+          "format": "{$2}{$7}{$9}{year}-{month-pretty}-{day-in-month} {hour-pretty}:{minute-pretty}:{second-pretty}  {weekday} W{week} UTC{offset-from-utc}"
+        },
+        {
+          "type": "custom",
+          "key": "{$1}{$9}╰─────────────╯",
+          "format": "{$2}{$10}╰────────────────────────────────────────────────────────────╯"
+        },
+        {
+          "type": "custom",
+          "key": " ",
+          "format": "                                                     \u001b[90m⟪  \u001b[31m■  \u001b[32m●  \u001b[33m▲  \u001b[34m△  \u001b[35m◯  \u001b[36m▢  \u001b[37m⟫ "
+        }
+    ]
+}

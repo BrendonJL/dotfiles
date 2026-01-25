@@ -5,8 +5,10 @@ WALLPAPER=$(cat ~/.config/rofi/current_wallpaper 2>/dev/null)
 # Fallback to default if no saved wallpaper
 [ -z "$WALLPAPER" ] && WALLPAPER="/home/blasley/Pictures/Wallpapers/Animated_Chill_Cat.mp4"
 
-killall mpvpaper 2>/dev/null
-mpvpaper -o "no-audio loop keepaspect=no" '*' "$WALLPAPER" &
+# Use gSlapper for video wallpapers with smooth fade transitions
+killall gslapper gslapper-holder 2>/dev/null
+sleep 0.1
+gslapper -f --transition-type fade --transition-duration 0.8 -o "loop fill" '*' "$WALLPAPER" &
 
 # Generate colors from wallpaper thumbnail using matugen
 WALLPAPER_DIR="$HOME/Pictures/Wallpapers"

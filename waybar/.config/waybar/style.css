@@ -1,3 +1,6 @@
+/* Waybar Style - Matugen Dynamic Theme */
+/* Standards: radius-md=12px, space-sm=8px, font-size-md=13px */
+
 /* ==================== */
 /*    GLOBAL STYLES     */
 /* ==================== */
@@ -6,7 +9,7 @@
   border: none;
   border-radius: 0;
   font-family: "FiraCode Nerd Font", "JetBrains Mono", "Noto Sans", monospace;
-  font-size: 14px;
+  font-size: 13px;
   min-height: 0;
 }
 
@@ -33,12 +36,12 @@ window#waybar {
   margin-top: 4px;
   margin-bottom: 4px;
   margin-left: 4px;
-  padding: 2px 6px;
+  padding: 2px 8px;
 }
 
 #custom-workspaces {
   padding: 2px 4px;
-  font-size: 14px;
+  font-size: 13px;
   color: #f3b7bc;
 }
 
@@ -49,11 +52,11 @@ window#waybar {
 #custom-scratch_term,
 #custom-scratch_discord,
 #custom-scratch_music {
-  padding: 2px 6px;
+  padding: 2px 8px;
   margin: 0;
   background: transparent;
   border-radius: 0;
-  font-size: 14px;
+  font-size: 13px;
   border: none;
   transition: all 0.2s ease-in-out;
 }
@@ -87,7 +90,7 @@ window#waybar {
   color: #e8e0e8;
   border-radius: 0;
   font-weight: 600;
-  font-size: 12px;
+  font-size: 11px;
   border: none;
   transition: all 0.2s ease-in-out;
 }
@@ -107,12 +110,12 @@ window#waybar {
 #custom-display_btn,
 #custom-battery_btn,
 #custom-system_btn {
-  padding: 2px 6px;
+  padding: 2px 8px;
   margin: 0;
   background: transparent;
   color: alpha(#cdc4ce, 0.95);
   border-radius: 0;
-  font-size: 14px;
+  font-size: 13px;
   border: none;
   transition: all 0.2s ease-in-out;
 }
@@ -165,7 +168,7 @@ window#waybar {
 
 #custom-colorpicker {
   color: alpha(#f3b7bc, 0.95);
-  padding: 2px 6px;
+  padding: 2px 8px;
 }
 
 #custom-colorpicker:hover {
@@ -174,7 +177,7 @@ window#waybar {
 
 /* Mic indicator */
 #custom-mic {
-  padding: 2px 6px;
+  padding: 2px 8px;
 }
 
 #custom-mic.mic-active {
@@ -187,7 +190,7 @@ window#waybar {
 
 /* Camera indicator */
 #custom-camera {
-  padding: 2px 6px;
+  padding: 2px 8px;
 }
 
 #custom-camera.cam-active {
@@ -201,7 +204,7 @@ window#waybar {
 /* Weather animations */
 #custom-weather {
   padding: 2px 8px;
-  font-size: 14px;
+  font-size: 13px;
   transition: all 0.3s ease-in-out;
 }
 
@@ -242,7 +245,7 @@ window#waybar {
 /* ==================== */
 
 #tray {
-  padding: 2px 6px;
+  padding: 2px 8px;
   margin-left: 4px;
 }
 
@@ -262,14 +265,14 @@ window#waybar {
 tooltip {
   background: alpha(#573a70, 0.95);
   border: 1px solid alpha(#ddb9f8, 0.4);
-  border-radius: 5px;
-  padding: 4px 6px;
+  border-radius: 0;
+  padding: 4px 8px;
 }
 
 tooltip label {
   color: alpha(#f3b7bc, 0.95);
   font-family: "FiraCode Nerd Font", "JetBrains Mono", monospace;
-  font-size: 10px;
+  font-size: 11px;
 }
 
 /* ==================== */
@@ -394,7 +397,7 @@ tooltip label {
   color: #e8e0e8;
   padding: 2px 8px;
   min-width: 300px;
-  font-size: 10px;
+  font-size: 11px;
 }
 
 #custom-news:hover {

@@ -6,14 +6,25 @@ WALLPAPER_DIR="$HOME/Pictures/Wallpapers"
 WALLPAPER_SAVE="$HOME/.config/rofi/current_wallpaper"
 
 main_menu() {
-    echo -e "🚀  Apps\n🖥️  Windows\n😊  Emoji\n📋  Clipboard\n🔢  Calculator\n🔍  Search\n📁  Files\n💀  Kill Process\n🖼️  Wallpaper\n📸  Screenshot\n🎬  Record\n⌨️  Typing Game"
+    echo -e "Apps\0icon\x1fapplications-other"
+    echo -e "Windows\0icon\x1fpreferences-system-windows"
+    echo -e "Emoji\0icon\x1fface-smile"
+    echo -e "Clipboard\0icon\x1fedit-paste"
+    echo -e "Calculator\0icon\x1faccessories-calculator"
+    echo -e "Search\0icon\x1fsystem-search"
+    echo -e "Files\0icon\x1fsystem-file-manager"
+    echo -e "Kill\0icon\x1fprocess-stop"
+    echo -e "Wallpaper\0icon\x1fpreferences-desktop-wallpaper"
+    echo -e "Screenshot\0icon\x1fapplets-screenshooter"
+    echo -e "Record\0icon\x1fmedia-record"
+    echo -e "Typing\0icon\x1finput-keyboard"
 }
 
 search_menu() {
-    query=$(rofi -dmenu -p "🔍 Search")
+    query=$(rofi -dmenu -p "🔍" -theme ~/.config/rofi/search-only.rasi)
     [[ -z "$query" ]] && exit 0
 
-    engine=$(echo -e "🌐  Google\n▶️  YouTube\n💻  GitHub\n🤖  Reddit" | rofi -dmenu -p "Where")
+    engine=$(echo -e "🌐  Google\n▶️  YouTube\n💻  GitHub\n🤖  Reddit" | rofi -dmenu -p "🔍" -theme ~/.config/rofi/purple-cat.rasi)
     [[ -z "$engine" ]] && exit 0
 
     encoded=$(echo "$query" | sed 's/ /+/g')
@@ -35,18 +46,18 @@ kill_menu() {
         # Get basename only
         n=split(cmd, parts, "/")
         cmd=parts[n]
-        if (length(cmd) > 20) cmd = substr(cmd, 1, 17) "..."
-        printf "⚙️ %s %s%% %s\n", pid, mem, cmd
-    }' | head -20 | rofi -dmenu -p "💀 Kill" -i)
+        if (length(cmd) > 25) cmd = substr(cmd, 1, 22) "..."
+        printf "%-25s  %5s%%  [%s]\n", cmd, mem, pid
+    }' | head -20 | rofi -dmenu -p "Kill Process" -i -theme ~/.config/rofi/simple-menu.rasi)
     [[ -z "$selected" ]] && exit 0
 
-    pid=$(echo "$selected" | awk '{print $2}')
+    pid=$(echo "$selected" | grep -oE '\[[0-9]+\]' | tr -d '[]')
     kill "$pid" 2>/dev/null || kill -9 "$pid" 2>/dev/null
-    exit 0  # Selection made - exit completely
+    exit 0
 }
 
 screenshot_menu() {
-    choice=$(echo -e "Region\nWindow\nFull Screen" | rofi -dmenu -p "Screenshot" -i)
+    choice=$(echo -e "Region\nWindow\nFull Screen" | rofi -dmenu -p "Screenshot" -i -theme ~/.config/rofi/simple-menu.rasi)
     [[ -z "$choice" ]] && exit 0
     case "$choice" in
         Region) ~/.config/hypr/scripts/satty-region.sh ;;
@@ -57,7 +68,7 @@ screenshot_menu() {
 }
 
 record_menu() {
-    choice=$(echo -e "Region\nFull Screen" | rofi -dmenu -p "Record" -i)
+    choice=$(echo -e "Region\nFull Screen" | rofi -dmenu -p "Record" -i -theme ~/.config/rofi/simple-menu.rasi)
     [[ -z "$choice" ]] && exit 0
     case "$choice" in
         Region) ~/.config/hypr/scripts/record.sh region ;;
@@ -87,73 +98,98 @@ window_menu() {
 wallpaper_menu() {
     THUMB_DIR="$WALLPAPER_DIR/thumbnails"
 
-    selected=$(find "$WALLPAPER_DIR" -maxdepth 1 -type f \( -name "*.mp4" -o -name "*.webm" -o -name "*.mkv" \) 2>/dev/null | while read -r file; do
-        filename=$(basename "$file")
-        name="${filename%.*}"
-        thumb="$THUMB_DIR/$name.png"
-        # Use rofi icon syntax: text\0icon\x1f/path/to/icon
-        echo -e "$name\0icon\x1f$thumb"
+    # Build menu from video wallpapers (using glob instead of find for speed)
+    selected=$(for file in "$WALLPAPER_DIR"/*.{mp4,webm,mkv}; do
+        [[ -f "$file" ]] || continue
+        name="${file##*/}"
+        name="${name%.*}"
+        echo -e "$name\0icon\x1f$THUMB_DIR/$name.png"
     done | rofi -dmenu -p "🖼️ Wallpaper" -i -show-icons -theme ~/.config/rofi/wallpaper-grid.rasi)
     [[ -z "$selected" ]] && exit 0
 
-    # Find the full path for selected wallpaper
-    wallpaper_path=$(find "$WALLPAPER_DIR" -maxdepth 1 -type f -name "$selected.*" | head -1)
-
+    # Find the full path (check common extensions)
+    for ext in mp4 webm mkv; do
+        [[ -f "$WALLPAPER_DIR/$selected.$ext" ]] && { wallpaper_path="$WALLPAPER_DIR/$selected.$ext"; break; }
+    done
     [[ -z "$wallpaper_path" ]] && exit 0
 
     # Save selection for startup script
     echo "$wallpaper_path" > "$WALLPAPER_SAVE"
 
-    # Show splash overlay during transition (close any existing first)
-    eww close splash 2>/dev/null; eww close splash-1 2>/dev/null; eww close splash-2 2>/dev/null
-    eww open splash & eww open splash-1 & eww open splash-2 &
-    sleep 0.2
-    killall mpvpaper 2>/dev/null
-    mpvpaper -o "no-audio loop keepaspect=no" '*' "$wallpaper_path" &
-    sleep 2.5
-    eww close splash & eww close splash-1 & eww close splash-2 &
+    # Switch wallpaper (gslapper handles fade transition)
+    pkill -x gslapper 2>/dev/null
+    pkill -x gslapper-holder 2>/dev/null
+    sleep 0.1
+    gslapper -f --transition-type fade --transition-duration 0.8 -o "loop fill" '*' "$wallpaper_path" &
 
-    # Generate colors from wallpaper thumbnail using matugen
-    wallpaper_name=$(basename "$wallpaper_path" | sed 's/\.[^.]*$//')
-    thumbnail="$THUMB_DIR/$wallpaper_name.png"
-    if [ -f "$thumbnail" ]; then
-        ~/.cargo/bin/matugen image "$thumbnail"
-        # Restart waybar with new colors
-        killall waybar 2>/dev/null
-        waybar -c ~/.config/waybar/config &
-        waybar -c ~/.config/waybar/config-laptop &
-        waybar -c ~/.config/waybar/config-right &
-        # Reload eww styles
-        eww reload &
+    # Generate colors while wallpaper loads (run in parallel)
+    thumbnail="$THUMB_DIR/$selected.png"
+    if [[ -f "$thumbnail" ]]; then
+        # Run matugen in background, then reload apps when done
+        (
+            ~/.cargo/bin/matugen image "$thumbnail"
+
+            # Restart waybar instances
+            pkill -x waybar 2>/dev/null
+            sleep 0.2
+            waybar -c ~/.config/waybar/config &
+            waybar -c ~/.config/waybar/config-laptop &
+            waybar -c ~/.config/waybar/config-right &
+
+            # Reload eww and swaync
+            eww reload &
+            swaync-client -rs &
+        ) &
     fi
 
-    exit 0  # Selection made - exit completely
+    exit 0
 }
 
-# Main loop - keeps returning to menu until you press Escape from main menu
-while true; do
-    chosen=$(main_menu | rofi -dmenu -p "Launch" -i)
+# Main menu with grid layout
+chosen=$(main_menu | rofi -dmenu -p "🔍" -i -show-icons -theme ~/.config/rofi/main-grid.rasi)
 
-    # Exit if nothing selected (Escape pressed)
-    [ -z "$chosen" ] && exit 0
+# Exit if nothing selected (Escape pressed)
+[ -z "$chosen" ] && exit 0
 
-    case "$chosen" in
-        "🚀  Apps") rofi -show drun; exit 0 ;;
-        "🖥️  Windows") window_menu ;;
-        "😊  Emoji") rofimoji --hidden-descriptions --selector-args="-theme ~/.config/rofi/emoji-grid.rasi" && exit 0 ;;
-        "📋  Clipboard")
-            selected=$(cliphist list | rofi -dmenu)
-            [[ -z "$selected" ]] && exit 0
-            echo "$selected" | cliphist decode | wl-copy
-            exit 0
-            ;;
-        "🔢  Calculator") rofi -show calc -modi calc -no-show-match -no-sort; exit 0 ;;
-        "🔍  Search") search_menu ;;
-        "📁  Files") rofi -show filebrowser; exit 0 ;;
-        "💀  Kill Process") kill_menu ;;
-        "🖼️  Wallpaper") wallpaper_menu ;;
-        "📸  Screenshot") screenshot_menu ;;
-        "🎬  Record") record_menu ;;
-        "⌨️  Typing Game") konsole --profile "Typing Game" -e /home/blasley/.nvm/versions/node/v24.11.1/bin/tgc -b --topic belgariad; exit 0 ;;
-    esac
-done
+case "$chosen" in
+    "Apps") rofi -show drun ;;
+    "Windows") window_menu ;;
+    "Emoji") rofimoji --hidden-descriptions --selector-args="-theme ~/.config/rofi/emoji-grid.rasi" ;;
+    "Clipboard")
+        # Create temp dir for image thumbnails
+        CLIP_THUMB_DIR="/tmp/cliphist-thumbs"
+        mkdir -p "$CLIP_THUMB_DIR"
+
+        # Build menu with image previews (limit to 15 recent items)
+        selected=$(cliphist list | head -15 | while IFS= read -r line; do
+            id="${line%%	*}"
+            content="${line#*	}"
+
+            # Check if it's an image entry
+            if [[ "$content" == *"[[ binary data"*"png"* ]] || [[ "$content" == *"[[ binary data"*"jpeg"* ]] || [[ "$content" == *"[[ binary data"*"jpg"* ]]; then
+                # Extract thumbnail
+                thumb="$CLIP_THUMB_DIR/$id.png"
+                if [[ ! -f "$thumb" ]]; then
+                    cliphist decode <<< "$line" | magick - -resize 128x128 "$thumb" 2>/dev/null
+                fi
+                if [[ -f "$thumb" ]]; then
+                    echo -e "${line}\0icon\x1f${thumb}"
+                else
+                    echo "$line"
+                fi
+            else
+                echo "$line"
+            fi
+        done | rofi -dmenu -p "Clipboard" -i -show-icons -theme ~/.config/rofi/clipboard.rasi)
+        [[ -z "$selected" ]] && exit 0
+        echo "$selected" | cliphist decode | wl-copy
+        ;;
+    "Calculator") rofi -show calc -modi calc -no-show-match -no-sort -theme ~/.config/rofi/calculator.rasi ;;
+    "Search") search_menu ;;
+    "Files") rofi -show filebrowser ;;
+    "Kill") kill_menu ;;
+    "Wallpaper") wallpaper_menu ;;
+    "Screenshot") screenshot_menu ;;
+    "Record") record_menu ;;
+    "Typing") konsole --profile "Typing Game" -e /home/blasley/.nvm/versions/node/v24.11.1/bin/tgc -b --topic belgariad ;;
+esac

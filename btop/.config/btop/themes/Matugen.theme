@@ -1,0 +1,85 @@
+# Matugen btop theme - auto-generated from wallpaper
+
+# Main background
+theme[main_bg]="#151217"
+
+# Main text color
+theme[main_fg]="#e8e0e8"
+
+# Title color for boxes
+theme[title]="#ddb9f8"
+
+# Highlight color for keyboard shortcuts
+theme[hi_fg]="#f3b7bc"
+
+# Background color of selected item in processes box
+theme[selected_bg]="#2d292e"
+
+# Foreground color of selected item in processes box
+theme[selected_fg]="#e8e0e8"
+
+# Color of inactive/disabled text
+theme[inactive_fg]="#cdc4ce"
+
+# Color of text on top of graphs
+theme[graph_text]="#e8e0e8"
+
+# Background color of the percentage meters
+theme[meter_bg]="#221e24"
+
+# Misc colors for processes box
+theme[proc_misc]="#e8e0e8"
+
+# Box outline colors
+theme[cpu_box]="#ddb9f8"
+theme[mem_box]="#ddb9f8"
+theme[net_box]="#ddb9f8"
+theme[proc_box]="#ddb9f8"
+
+# Box divider line
+theme[div_line]="#968e98"
+
+# Temperature graph colors
+theme[temp_start]="#f3b7bc"
+theme[temp_mid]="#d1c1d9"
+theme[temp_end]="#ffb4ab"
+
+# CPU graph colors
+theme[cpu_start]="#f3b7bc"
+theme[cpu_mid]="#ddb9f8"
+theme[cpu_end]="#d1c1d9"
+
+# Mem/Disk FREE meter
+theme[free_start]="#ffb4ab"
+theme[free_mid]="#d1c1d9"
+theme[free_end]="#f3b7bc"
+
+# Mem/Disk CACHED meter
+theme[cached_start]="#f3b7bc"
+theme[cached_mid]="#ddb9f8"
+theme[cached_end]="#d1c1d9"
+
+# Mem/Disk AVAILABLE meter
+theme[available_start]="#d1c1d9"
+theme[available_mid]="#f3b7bc"
+theme[available_end]="#ddb9f8"
+
+# Mem/Disk USED meter
+theme[used_start]="#ddb9f8"
+theme[used_mid]="#d1c1d9"
+theme[used_end]="#ffb4ab"
+
+# Download graph colors
+theme[download_start]="#f3b7bc"
+theme[download_mid]="#ddb9f8"
+theme[download_end]="#d1c1d9"
+
+# Upload graph colors
+theme[upload_start]="#f3b7bc"
+theme[upload_mid]="#d1c1d9"
+theme[upload_end]="#ddb9f8"
+
+# Process box gradient
+theme[process_start]="#f3b7bc"
+theme[process_mid]="#ddb9f8"
+theme[process_end]="#d1c1d9"

@@ -1,0 +1,11 @@
+[general]
+fullscreen = false
+early-exit = true
+copy-command = "/usr/bin/wl-copy"
+output-filename = "~/Pictures/screenshots/Screenshot-%Y-%m-%d_%H-%M-%S.png"
+save-after-copy = true
+actions-on-enter = ["save-to-clipboard", "save-to-file", "exit"]
+actions-on-escape = ["exit"]
+
+[color-palette]
+palette = ["#A667BA", "#fbcf49", "#f3b7bc", "#ddb9f8", "#968e98", "#e8e0e8"]
