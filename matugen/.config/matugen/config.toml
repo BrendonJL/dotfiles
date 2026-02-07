@@ -5,94 +5,25 @@ mode = "dark"
 # Color scheme type - fidelity stays true to wallpaper colors
 type = "scheme-fidelity"
 
-# Note: Auto-reload doesn't work reliably, handled manually in wallpaper script
-# [config.reload_apps_list]
-# waybar = true
-# swaync = true
+# ==========================================
+# Custom templates (not covered by DMS)
+# ==========================================
 
-# Waybar template - generates the style.css from template
-[templates.waybar]
-input_path = "~/.config/matugen/templates/waybar-style.css"
-output_path = "~/.config/waybar/style.css"
-
-# EWW template - generates eww.scss from template
-[templates.eww]
-input_path = "~/.config/matugen/templates/eww.scss"
-output_path = "~/.config/eww/eww.scss"
-
-# Rofi templates - generates rofi themes from templates
-[templates.rofi-main-grid]
-input_path = "~/.config/matugen/templates/rofi-main-grid.rasi"
-output_path = "~/.config/rofi/main-grid.rasi"
-
-[templates.rofi-purple-cat]
-input_path = "~/.config/matugen/templates/rofi-purple-cat.rasi"
-output_path = "~/.config/rofi/purple-cat.rasi"
-
-[templates.rofi-emoji-grid]
-input_path = "~/.config/matugen/templates/rofi-emoji-grid.rasi"
-output_path = "~/.config/rofi/emoji-grid.rasi"
-
-[templates.rofi-wallpaper-grid]
-input_path = "~/.config/matugen/templates/rofi-wallpaper-grid.rasi"
-output_path = "~/.config/rofi/wallpaper-grid.rasi"
-
-[templates.rofi-window-grid]
-input_path = "~/.config/matugen/templates/rofi-window-grid.rasi"
-output_path = "~/.config/rofi/window-grid.rasi"
-
-[templates.rofi-search-only]
-input_path = "~/.config/matugen/templates/rofi-search-only.rasi"
-output_path = "~/.config/rofi/search-only.rasi"
-
-[templates.rofi-simple-menu]
-input_path = "~/.config/matugen/templates/rofi-simple-menu.rasi"
-output_path = "~/.config/rofi/simple-menu.rasi"
-
-[templates.rofi-clipboard]
-input_path = "~/.config/matugen/templates/rofi-clipboard.rasi"
-output_path = "~/.config/rofi/clipboard.rasi"
-
-[templates.rofi-calculator]
-input_path = "~/.config/matugen/templates/rofi-calculator.rasi"
-output_path = "~/.config/rofi/calculator.rasi"
-
-# GTK3 colors
-[templates.gtk3]
-input_path = "~/.config/matugen/templates/gtk-colors.css"
-output_path = "~/.config/gtk-3.0/colors.css"
-
-# GTK4 colors
-[templates.gtk4]
-input_path = "~/.config/matugen/templates/gtk-colors.css"
-output_path = "~/.config/gtk-4.0/colors.css"
-
-# Kvantum Qt theme
-[templates.kvantum]
-input_path = "~/.config/matugen/templates/kvantum-matugen.kvconfig"
-output_path = "~/.config/Kvantum/Matugen/Matugen.kvconfig"
-
-# Fastfetch config
+# Fastfetch config - system fetch colors
 [templates.fastfetch]
 input_path = "~/.config/matugen/templates/fastfetch-config.jsonc"
 output_path = "~/.config/fastfetch/config.jsonc"
 
-# Btop theme
+# Btop theme - system monitor colors
 [templates.btop]
 input_path = "~/.config/matugen/templates/btop-matugen.theme"
 output_path = "~/.config/btop/themes/Matugen.theme"
 
-# Neovim colors - dynamic editor colors
-[templates.nvim]
-input_path = "~/.config/matugen/templates/nvim-colors.lua"
-output_path = "~/.config/nvim/lua/config/matugen-colors.lua"
-
-# Konsole colorscheme - dynamic terminal colors
-[templates.konsole]
-input_path = "~/.config/matugen/templates/konsole-matugen.colorscheme"
-output_path = "~/.local/share/konsole/Matugen.colorscheme"
-
-# SwayNC template - generates notification center styles
-[templates.swaync]
-input_path = "~/.config/matugen/templates/swaync-style.css"
-output_path = "~/.config/swaync/style.css"
+# ==========================================
+# Templates now handled by DMS:
+# - GTK 3/4, Qt5ct/Qt6ct, Kvantum
+# - Kitty, Alacritty
+# - Neovim
+# - Firefox
+# - Niri
+# ==========================================

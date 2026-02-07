@@ -1,1 +1,14 @@
+# Secrets - never commit these
 hypr/.config/hypr/hypr.d/secrets.conf
+zsh/.secrets
+*.secrets
+secrets.conf
+
+# DMS plugin repos (will be re-downloaded)
+dms/.config/DankMaterialShell/plugins/.repos/
+
+# Cache and temp files
+*.swp
+*.swo
+*~
+.DS_Store

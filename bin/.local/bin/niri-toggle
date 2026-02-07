@@ -1,0 +1,77 @@
+#!/bin/bash
+# niri-toggle: Toggle scratchpad windows by title or app-id
+# Usage: niri-toggle [-t title_pattern | -c app_id] command [args...]
+#
+# Behavior:
+#   - If window doesn't exist: launches the command
+#   - If window is stashed (on SPs workspace): brings to current workspace as floating
+#   - If window is on current workspace: sends back to SPs as tiled
+#   - If window is on another workspace: focuses it there
+
+STASH_WS="SPs"
+match_type="appid"
+match_pattern=""
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        -t|--title)
+            match_type="title"
+            match_pattern="$2"
+            shift 2
+            ;;
+        -c|--class)
+            match_type="appid"
+            match_pattern="$2"
+            shift 2
+            ;;
+        *)
+            break
+            ;;
+    esac
+done
+
+command="$@"
+
+# Get workspace info
+ws_info=$(niri msg -j workspaces)
+current_ws_id=$(echo "$ws_info" | jq -r '.[] | select(.is_focused) | .id')
+stash_ws_id=$(echo "$ws_info" | jq -r ".[] | select(.name == \"$STASH_WS\") | .id")
+
+# Get current workspace reference (name if available, otherwise idx)
+current_ws_name=$(echo "$ws_info" | jq -r '.[] | select(.is_focused) | .name')
+if [[ "$current_ws_name" != "null" && -n "$current_ws_name" ]]; then
+    current_ws_ref="$current_ws_name"
+else
+    # Fallback to idx for unnamed workspaces
+    current_ws_ref=$(echo "$ws_info" | jq -r '.[] | select(.is_focused) | .idx')
+fi
+
+# Find matching window
+if [[ "$match_type" == "title" ]]; then
+    window_info=$(niri msg -j windows | jq -r ".[] | select(.title | test(\"$match_pattern\"; \"i\"))" | head -100)
+else
+    window_info=$(niri msg -j windows | jq -r ".[] | select(.app_id | test(\"$match_pattern\"; \"i\"))" | head -100)
+fi
+
+window_id=$(echo "$window_info" | jq -rs '.[0].id // empty')
+window_ws=$(echo "$window_info" | jq -rs '.[0].workspace_id // empty')
+
+if [[ -z "$window_id" ]]; then
+    # Window not found, launch it
+    eval "$command" &
+    exit 0
+fi
+
+if [[ "$window_ws" == "$stash_ws_id" ]]; then
+    # Window is stashed - make it floating, move to current workspace, then focus
+    niri msg action move-window-to-floating --id "$window_id"
+    niri msg action move-window-to-workspace --window-id "$window_id" --focus false "$current_ws_ref"
+    niri msg action focus-window --id "$window_id"
+elif [[ "$window_ws" == "$current_ws_id" ]]; then
+    # Window is on current workspace - tile it, then stash
+    niri msg action move-window-to-tiling --id "$window_id"
+    niri msg action move-window-to-workspace --window-id "$window_id" --focus false "$STASH_WS"
+else
+    # Window is on another workspace, just focus it
+    niri msg action focus-window --id "$window_id"
+fi

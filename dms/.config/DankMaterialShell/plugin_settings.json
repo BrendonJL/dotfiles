@@ -1,0 +1,79 @@
+{
+  "dankStickerSearch": {
+    "enabled": true
+  },
+  "dankGifSearch": {
+    "enabled": true,
+    "trigger": ":g"
+  },
+  "dankLauncherKeys": {
+    "enabled": true,
+    "noTrigger": false,
+    "trigger": ":k"
+  },
+  "emojiLauncher": {
+    "enabled": true,
+    "noTrigger": false,
+    "trigger": ":e"
+  },
+  "webSearch": {
+    "enabled": true,
+    "searchEngines": [],
+    "trigger": ";"
+  },
+  "commandRunner": {
+    "enabled": true,
+    "trigger": ":c"
+  },
+  "dankClight": {
+    "enabled": true
+  },
+  "powerOptions": {
+    "enabled": true,
+    "noTrigger": false,
+    "trigger": ":p"
+  },
+  "mediaPlayer": {
+    "enabled": true
+  },
+  "displayManager": {
+    "enabled": true,
+    "brightness_eDP-1": 48.84832974137931,
+    "contrast_eDP-1": 48.521686422413794,
+    "brightness_DVI-I-2": 67.529296875,
+    "contrast_DVI-I-2": 96.36651400862068
+  },
+  "wallpaperDiscovery": {
+    "enabled": true,
+    "lastWallpaperUsed": "wallhaven.cc",
+    "downloadLocation": "/home/blasley/Pictures/Wallpapers",
+    "api_unsplash": "zVweXmi7FF_BAoj3RM80EfK_P2QjmZvvCqi3qRziNWs",
+    "api_pexels": "DwW7PQJNG0IhoyIKzZgt50yzfWysYOpf2T6bJb3PCgu8ZyYSiNkc9QyY"
+  },
+  "dankNotepadModule": {
+    "enabled": true,
+    "style": "colorful"
+  },
+  "dankKDEConnect": {
+    "enabled": true
+  },
+  "niriWindows": {
+    "enabled": true,
+    "trigger": ":w"
+  },
+  "gitmojiLauncher": {
+    "enabled": true,
+    "trigger": ":M"
+  },
+  "sathiAi": {
+    "enabled": true,
+    "maxMessageHistory": 13,
+    "persistChatHistory": true,
+    "lmstudioUrl": "htttp",
+    "ollamaUrl": "http://localhost:11434",
+    "chatHistory": "[{\"role\":\"model\",\"content\":\"I'm just a chatbot, but I'm here and ready to help! 😊 What's your date?\"},{\"role\":\"user\",\"content\":\"hey\"},{\"role\":\"user\",\"content\":\"Hey hows it going today?\"}]",
+    "windowWidth": 436.5546875,
+    "windowHeight": 526.7890625,
+    "aiModel": "ollama:qwen2.5:7b"
+  }
+}

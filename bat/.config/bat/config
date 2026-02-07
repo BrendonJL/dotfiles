@@ -1,0 +1,31 @@
+# Bat configuration file
+# See: bat --help
+
+# Theme - Dracula matches purple aesthetic
+--theme="Dracula"
+
+# Style: show line numbers, git changes, header, and grid
+# Components: changes, grid, header, header-filename, header-filesize,
+#             line-numbers, numbers, rule, snip
+--style="numbers,changes,header,grid"
+
+# Enable color output
+--color=always
+
+# Use italic text (if terminal supports it)
+--italic-text=always
+
+# Set tab width
+--tabs=4
+
+# Don't wrap long lines (let terminal handle it)
+--wrap=never
+
+# Show non-printable characters
+# --show-all
+
+# Map additional extensions to languages
+--map-syntax "*.conf:INI"
+--map-syntax "*.env:Dotenv"
+--map-syntax "*.kdl:Kotlin"
+--map-syntax ".gitignore:Git Ignore"

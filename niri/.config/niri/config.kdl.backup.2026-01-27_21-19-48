@@ -1,0 +1,620 @@
+// ============================================
+// NIRI CONFIG - Mirrored from Hyprland
+// ============================================
+
+// Input configuration
+input {
+    keyboard {
+        xkb {
+            layout "us"
+        }
+        numlock
+    }
+
+    mouse {
+        accel-profile "flat"
+        accel-speed 0.1
+    }
+
+    touchpad {
+        tap
+        natural-scroll
+        accel-profile "flat"
+    }
+
+    // Don't auto-focus on mouse move (matches follow_mouse = 0)
+    // focus-follows-mouse
+}
+
+// ============================================
+// WORKSPACE CONFIGURATION
+// ============================================
+// Named workspace for ndrop scratchpads (required for ndrop to function)
+workspace "ndrop"
+
+// ============================================
+// MONITOR CONFIGURATION
+// ============================================
+// Run `niri msg outputs` with monitors connected to verify output names and available modes
+//
+// Dell S3220DGF - Left monitor (native 2560x1440)
+output "DVI-I-1" {
+    mode "2560x1440@59.95"
+    position x=0 y=0
+}
+
+// Dell S3222DGM - Middle monitor (native 2560x1440)
+output "DVI-I-2" {
+    mode "2560x1440@59.95"
+    position x=2560 y=0
+}
+
+// Laptop screen - Right (far right)
+output "eDP-1" {
+    mode "1920x1080@240"
+    position x=5120 y=0
+}
+
+// ============================================
+// LAYOUT - Matches Hyprland scrolling layout
+// ============================================
+layout {
+    gaps 3
+
+    // Column width presets (matches hyprscrolling explicit_column_widths)
+    preset-column-widths {
+        proportion 0.33
+        proportion 0.5
+        proportion 0.66
+        proportion 1.0
+    }
+
+    default-column-width { proportion 0.5; }
+
+    center-focused-column "on-overflow"
+
+    // Focus ring with gradient (matches your gold/cyan/pink border)
+    focus-ring {
+        width 3
+        active-gradient from="#fbd149" to="#64ffff" angle=45
+        inactive-color "rgba(255, 255, 255, 0.15)"
+    }
+
+    // Border disabled since we use focus-ring
+    border {
+        off
+    }
+
+    // Shadows (matches decoration.shadow)
+    shadow {
+        on
+        softness 20
+        spread 0
+        offset x=0 y=5
+        color "rgba(0, 0, 0, 0.45)"
+    }
+}
+
+// ============================================
+// VISUAL SETTINGS
+// ============================================
+
+// Request no client-side decorations
+prefer-no-csd
+
+// Screenshot path
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+// Hotkey overlay
+hotkey-overlay {
+    skip-at-startup
+}
+
+// Overview configuration
+// Zoom level: 0.25 = 4x smaller (more zoomed out), 0.5 = 2x smaller, 1.0 = no zoom
+overview {
+    zoom 0.3
+    backdrop-color "rgba(0, 0, 0, 0.5)"
+}
+
+// ============================================
+// ANIMATIONS
+// ============================================
+animations {
+    // Burn effect with 8 randomly selected ember colors
+    // Colors: orange, blue, purple, green, pink, cyan, gold, deep red
+    workspace-switch {
+        duration-ms 300
+        curve "ease-out-cubic"
+    }
+
+    window-open {
+        duration-ms 500
+        curve "linear"
+        custom-shader r"
+            float hash(vec2 p) {
+                return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
+            }
+            float noise(vec2 p) {
+                vec2 i = floor(p);
+                vec2 f = fract(p);
+                f = f * f * (3.0 - 2.0 * f);
+                return mix(mix(hash(i), hash(i + vec2(1.0, 0.0)), f.x),
+                           mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), f.x), f.y);
+            }
+            vec3 get_ember_colors(float seed, out vec3 inner, out vec3 outer) {
+                if (seed < 0.125) {
+                    inner = vec3(1.0, 0.3, 0.0);       // orange
+                    outer = vec3(1.0, 0.8, 0.2);
+                } else if (seed < 0.25) {
+                    inner = vec3(0.2, 0.4, 1.0);       // blue
+                    outer = vec3(0.5, 0.8, 1.0);
+                } else if (seed < 0.375) {
+                    inner = vec3(0.6, 0.1, 0.9);       // purple
+                    outer = vec3(0.9, 0.5, 1.0);
+                } else if (seed < 0.5) {
+                    inner = vec3(0.1, 0.8, 0.2);       // green
+                    outer = vec3(0.5, 1.0, 0.3);
+                } else if (seed < 0.625) {
+                    inner = vec3(1.0, 0.1, 0.4);       // pink
+                    outer = vec3(1.0, 0.5, 0.7);
+                } else if (seed < 0.75) {
+                    inner = vec3(0.0, 0.8, 0.9);       // cyan
+                    outer = vec3(0.7, 1.0, 1.0);
+                } else if (seed < 0.875) {
+                    inner = vec3(0.9, 0.7, 0.1);       // gold
+                    outer = vec3(1.0, 1.0, 0.8);
+                } else {
+                    inner = vec3(0.8, 0.2, 0.1);       // deep red
+                    outer = vec3(1.0, 0.5, 0.2);
+                }
+                return inner;
+            }
+            vec4 burn_open(vec3 coords_geo, vec3 size_geo) {
+                if (coords_geo.x < 0.0 || coords_geo.x > 1.0 || coords_geo.y < 0.0 || coords_geo.y > 1.0) {
+                    return vec4(0.0);
+                }
+                float progress = niri_clamped_progress;
+                vec2 uv = coords_geo.xy;
+                vec3 coords_tex = niri_geo_to_tex * vec3(uv, 1.0);
+                vec4 color = texture2D(niri_tex, coords_tex.st);
+
+                float edge_dist = min(min(uv.x, 1.0 - uv.x), min(uv.y, 1.0 - uv.y));
+                float n = noise(uv * 8.0 + niri_random_seed * 100.0) * 0.3;
+                float burn_line = edge_dist + n;
+                float threshold = progress * 0.8;
+
+                vec3 ember_inner, ember_outer;
+                get_ember_colors(niri_random_seed, ember_inner, ember_outer);
+
+                if (burn_line < threshold - 0.08) {
+                    return color;
+                } else if (burn_line < threshold) {
+                    vec3 ember = mix(ember_inner, ember_outer, (burn_line - threshold + 0.08) / 0.08);
+                    return vec4(mix(ember, color.rgb, 0.3), color.a);
+                } else {
+                    return vec4(0.0);
+                }
+            }
+            vec4 open_color(vec3 coords_geo, vec3 size_geo) {
+                return burn_open(coords_geo, size_geo);
+            }
+        "
+    }
+
+    window-close {
+        duration-ms 500
+        curve "linear"
+        custom-shader r"
+            float hash(vec2 p) {
+                return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
+            }
+            float noise(vec2 p) {
+                vec2 i = floor(p);
+                vec2 f = fract(p);
+                f = f * f * (3.0 - 2.0 * f);
+                return mix(mix(hash(i), hash(i + vec2(1.0, 0.0)), f.x),
+                           mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), f.x), f.y);
+            }
+            vec3 get_ember_colors(float seed, out vec3 inner, out vec3 outer) {
+                if (seed < 0.125) {
+                    inner = vec3(1.0, 0.3, 0.0);       // orange
+                    outer = vec3(1.0, 0.8, 0.2);
+                } else if (seed < 0.25) {
+                    inner = vec3(0.2, 0.4, 1.0);       // blue
+                    outer = vec3(0.5, 0.8, 1.0);
+                } else if (seed < 0.375) {
+                    inner = vec3(0.6, 0.1, 0.9);       // purple
+                    outer = vec3(0.9, 0.5, 1.0);
+                } else if (seed < 0.5) {
+                    inner = vec3(0.1, 0.8, 0.2);       // green
+                    outer = vec3(0.5, 1.0, 0.3);
+                } else if (seed < 0.625) {
+                    inner = vec3(1.0, 0.1, 0.4);       // pink
+                    outer = vec3(1.0, 0.5, 0.7);
+                } else if (seed < 0.75) {
+                    inner = vec3(0.0, 0.8, 0.9);       // cyan
+                    outer = vec3(0.7, 1.0, 1.0);
+                } else if (seed < 0.875) {
+                    inner = vec3(0.9, 0.7, 0.1);       // gold
+                    outer = vec3(1.0, 1.0, 0.8);
+                } else {
+                    inner = vec3(0.8, 0.2, 0.1);       // deep red
+                    outer = vec3(1.0, 0.5, 0.2);
+                }
+                return inner;
+            }
+            vec4 burn_close(vec3 coords_geo, vec3 size_geo) {
+                if (coords_geo.x < 0.0 || coords_geo.x > 1.0 || coords_geo.y < 0.0 || coords_geo.y > 1.0) {
+                    return vec4(0.0);
+                }
+                float progress = niri_clamped_progress;
+                vec2 uv = coords_geo.xy;
+                vec3 coords_tex = niri_geo_to_tex * vec3(uv, 1.0);
+                vec4 color = texture2D(niri_tex, coords_tex.st);
+
+                float edge_dist = min(min(uv.x, 1.0 - uv.x), min(uv.y, 1.0 - uv.y));
+                float n = noise(uv * 8.0 + niri_random_seed * 100.0) * 0.3;
+                float burn_line = edge_dist + n;
+                float threshold = progress * 0.8;
+
+                vec3 ember_inner, ember_outer;
+                get_ember_colors(niri_random_seed, ember_inner, ember_outer);
+
+                if (burn_line > threshold + 0.08) {
+                    return color;
+                } else if (burn_line > threshold) {
+                    vec3 ember = mix(ember_inner, ember_outer, 1.0 - (burn_line - threshold) / 0.08);
+                    return vec4(mix(ember, color.rgb, 0.3), color.a);
+                } else {
+                    return vec4(0.0);
+                }
+            }
+            vec4 close_color(vec3 coords_geo, vec3 size_geo) {
+                return burn_close(coords_geo, size_geo);
+            }
+        "
+    }
+}
+
+debug {
+  // Allows notification actions and window activation from Noctalia.
+  honor-xdg-activation-with-invalid-serial
+}
+
+// ============================================
+// ENVIRONMENT VARIABLES
+// ============================================
+environment {
+    XDG_CURRENT_DESKTOP "niri"
+    QT_QPA_PLATFORM "wayland;xcb"
+    GDK_BACKEND "wayland"
+
+    // Nvidia configuration
+    LIBVA_DRIVER_NAME "nvidia"
+    __GLX_VENDOR_LIBRARY_NAME "nvidia"
+    GBM_BACKEND "nvidia-drm"
+    NVD_BACKEND "direct"
+    __GL_GSYNC_ALLOWED "1"
+    __GL_VRR_ALLOWED "1"
+
+    // Input method
+    GTK_IM_MODULE "ibus"
+    QT_IM_MODULE "ibus"
+    XMODIFIERS "@im=ibus"
+    IBUS_ENABLE_SYNC_MODE "1"
+    IBUS_DISABLE_SNOOPER "1"
+
+    // Cursor
+    XCURSOR_THEME "catppuccin-mocha-mauve-cursors"
+    XCURSOR_SIZE "24"
+}
+
+// ============================================
+// AUTOSTART
+// ============================================
+spawn-at-startup "waybar"
+spawn-at-startup "swaync"
+spawn-at-startup "hypridle"
+
+// Clipboard history
+spawn-sh-at-startup "wl-paste --type text --watch cliphist store"
+spawn-sh-at-startup "wl-paste --type image --watch cliphist store"
+
+// Set the regular wallpaper on the backdrop.
+layer-rule {
+  match namespace="^noctalia-wallpaper*"
+  place-within-backdrop true
+}
+
+// Scratchpads are handled by ndrop on-demand (no pre-launch needed)
+
+// ============================================
+// WINDOW RULES
+// ============================================
+
+// XWayland video bridge - hide it
+window-rule {
+    match app-id="xwaylandvideobridge"
+    open-floating true
+    default-column-width { fixed 1; }
+    default-window-height { fixed 1; }
+    opacity 0.0
+}
+
+// File dialogs - float
+window-rule {
+    match title="^Open File"
+    open-floating true
+}
+
+window-rule {
+    match title="^Save File"
+    open-floating true
+}
+
+// Scratchpad terminal (Brendon Lasley profile) - float
+window-rule {
+    match app-id="^org.kde.konsole$" title="Brendon Lasley"
+    open-floating true
+    default-column-width { fixed 1200; }
+    default-window-height { fixed 700; }
+}
+
+// EWW widgets - float, no focus
+window-rule {
+    match app-id="^eww$"
+    open-floating true
+}
+
+// Discord - float
+window-rule {
+    match app-id="^discord$"
+    open-floating true
+}
+
+// BetterSoundCloud - float
+window-rule {
+    match app-id="^bettersoundcloud$"
+    open-floating true
+}
+
+// Xpad notes - float
+window-rule {
+    match app-id="^xpad"
+    open-floating true
+}
+
+// Gwenview - float with size
+window-rule {
+    match app-id="^org.kde.gwenview$"
+    open-floating true
+    default-column-width { fixed 800; }
+    default-window-height { fixed 600; }
+}
+
+// Claude - float, centered
+window-rule {
+    match app-id="^Claude$"
+    open-floating true
+    default-column-width { fixed 1400; }
+    default-window-height { fixed 900; }
+}
+
+// Satty screenshot editor - float
+window-rule {
+    match app-id="^com.gabm.satty$"
+    open-floating true
+}
+
+// wdisplays - float
+window-rule {
+    match app-id="^wdisplays$"
+    open-floating true
+    default-column-width { fixed 1500; }
+    default-window-height { fixed 1000; }
+}
+
+// Pavucontrol - float
+window-rule {
+    match app-id="^org.pulseaudio.pavucontrol$"
+    open-floating true
+}
+
+// Blueman - float
+window-rule {
+    match app-id="^blueman-manager$"
+    open-floating true
+}
+
+// Easy Effects - float
+window-rule {
+    match app-id="^com.github.wwmm.easyeffects$"
+    open-floating true
+}
+
+// Weather app - float
+window-rule {
+    match app-id="^com.gitlab.bitseater.meteo$"
+    open-floating true
+}
+
+// Enable rounded corners for all windows (matches rounding = 10)
+window-rule {
+    geometry-corner-radius 10
+    clip-to-geometry true
+}
+
+// ============================================
+// KEYBINDINGS (ALT as main modifier)
+// ============================================
+binds {
+    // ==================
+    // SYSTEM CONTROLS
+    // ==================
+    Alt+Ctrl+L { spawn "hyprlock"; }
+    Alt+Shift+R { spawn "systemctl" "reboot"; }
+    Alt+Shift+E { quit; }
+
+    // ==================
+    // WINDOW MANAGEMENT
+    // ==================
+    Alt+Q { close-window; }
+    Alt+V { toggle-window-floating; }
+    Alt+T { fullscreen-window; }
+
+    // Mouse controls - niri handles Alt+drag for move/resize automatically
+
+    // ==================
+    // FOCUS NAVIGATION
+    // ==================
+    // Left/Right between columns (matches ALT+I/O)
+    Alt+I { focus-column-left; }
+    Alt+O { focus-column-right; }
+
+    // Up/Down within column
+    Alt+Shift+I { focus-window-up; }
+    Alt+Shift+O { focus-window-down; }
+
+    // Arrow key alternatives
+    Alt+Left { focus-column-left; }
+    Alt+Right { focus-column-right; }
+    Alt+Up { focus-window-up; }
+    Alt+Down { focus-window-down; }
+
+    // ==================
+    // WINDOW MOVEMENT
+    // ==================
+    // Move columns (matches ALT+J/K for swapcol)
+    Alt+J { move-column-left; }
+    Alt+K { move-column-right; }
+
+    // Move window within column
+    Alt+Shift+J { move-window-down; }
+    Alt+Shift+K { move-window-up; }
+
+    // Move window to different column
+    Alt+Comma { consume-or-expel-window-left; }
+    Alt+Period { consume-or-expel-window-right; }
+
+    // ==================
+    // COLUMN SIZING
+    // ==================
+    Alt+Equal { set-column-width "+10%"; }
+    Alt+Minus { set-column-width "-10%"; }
+    Alt+Backslash { switch-preset-column-width; }
+    Alt+F { maximize-column; }
+    Alt+Ctrl+C { center-column; }
+
+    // ==================
+    // WORKSPACES
+    // ==================
+    Alt+1 { focus-workspace 1; }
+    Alt+2 { focus-workspace 2; }
+    Alt+3 { focus-workspace 3; }
+    Alt+4 { focus-workspace 4; }
+    Alt+5 { focus-workspace 5; }
+    Alt+6 { focus-workspace 6; }
+    Alt+7 { focus-workspace 7; }
+    Alt+8 { focus-workspace 8; }
+    Alt+9 { focus-workspace 9; }
+    Alt+0 { focus-workspace 10; }
+
+    // Move window to workspace
+    Alt+Shift+1 { move-column-to-workspace 1; }
+    Alt+Shift+2 { move-column-to-workspace 2; }
+    Alt+Shift+3 { move-column-to-workspace 3; }
+    Alt+Shift+4 { move-column-to-workspace 4; }
+    Alt+Shift+5 { move-column-to-workspace 5; }
+    Alt+Shift+6 { move-column-to-workspace 6; }
+    Alt+Shift+7 { move-column-to-workspace 7; }
+    Alt+Shift+8 { move-column-to-workspace 8; }
+    Alt+Shift+9 { move-column-to-workspace 9; }
+    Alt+Shift+0 { move-column-to-workspace 10; }
+
+    // Workspace navigation
+    Alt+Page_Up { focus-workspace-up; }
+    Alt+Page_Down { focus-workspace-down; }
+
+    // Overview (like hyprexpo) - Alt+Tab and Alt+Shift+W both work
+    // In overview: scroll wheel or touchpad to zoom in/out
+    Alt+Tab { toggle-overview; }
+    Alt+Shift+W { toggle-overview; }
+
+    // Mouse wheel workspace switching
+    Alt+WheelScrollUp cooldown-ms=150 { focus-workspace-up; }
+    Alt+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
+
+    // ==================
+    // MONITOR FOCUS
+    // ==================
+    Alt+Shift+Left { focus-monitor-left; }
+    Alt+Shift+Right { focus-monitor-right; }
+    Alt+Shift+Up { focus-monitor-up; }
+    Alt+Shift+Down { focus-monitor-down; }
+
+    // Move to monitor
+    Alt+Shift+Ctrl+Left { move-column-to-monitor-left; }
+    Alt+Shift+Ctrl+Right { move-column-to-monitor-right; }
+    Alt+Shift+Ctrl+Up { move-column-to-monitor-up; }
+    Alt+Shift+Ctrl+Down { move-column-to-monitor-down; }
+
+    // ==================
+    // APPLICATIONS
+    // ==================
+    Alt+Return { spawn "konsole"; }
+    Alt+E { spawn "dolphin"; }
+    Alt+B { spawn "vivaldi-stable"; }
+    Alt+D { spawn-sh "~/.config/rofi/launcher.sh"; }
+    Alt+Shift+N { spawn "konsole" "--profile" "NeoVIM" "-e" "nvim"; }
+    Alt+Shift+C { spawn-sh "~/.config/hypr/scripts/toggle-claude.sh"; }
+
+    // ==================
+    // SCRATCHPADS (via niri-toggle)
+    // ==================
+    // Use -t for title matching, -c for app-id matching
+    // Check app-ids/titles with: niri msg windows
+    Alt+S { spawn-sh "niri-toggle -t 'Brendon Lasley' konsole --profile 'Brendon Lasley'"; }
+    Alt+A { spawn-sh "niri-toggle -c bettersoundcloud /home/blasley/BetterSoundCloud-Linux/start.sh"; }
+    Alt+G { spawn-sh "niri-toggle -c discord /usr/bin/Discord"; }
+    Alt+P { spawn-sh "niri-toggle -c xpad xpad"; }
+
+    // ==================
+    // MEDIA & UTILITIES
+    // ==================
+    Alt+W { spawn-sh "pkill gslapper || ~/.config/hypr/scripts/wallpaper.sh"; }
+    Alt+N { spawn-sh "~/.config/waybar/toggle-swaync.sh"; }
+    Alt+R { spawn-sh "/home/blasley/ricedup.sh"; }
+
+    // Close all popups
+    Alt+C { spawn-sh "killall -SIGUSR1 waybar; eww close audio_popup bluetooth_popup network_popup display_popup battery_popup system_popup calendar_popup workspace_popup power_popup month_picker year_picker event_details event_editor confirm_dialog; swaync-client -cp"; }
+
+    // Screenshots
+    Print { screenshot; }
+    Ctrl+Print { screenshot-screen; }
+    Alt+Print { screenshot-window; }
+
+    // Volume controls
+    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+ -l 1.0"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-"; }
+    XF86AudioMute allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
+    XF86AudioMicMute allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
+
+    // Media controls
+    XF86AudioPlay allow-when-locked=true { spawn "playerctl" "play-pause"; }
+    XF86AudioStop allow-when-locked=true { spawn "playerctl" "stop"; }
+    XF86AudioPrev allow-when-locked=true { spawn "playerctl" "previous"; }
+    XF86AudioNext allow-when-locked=true { spawn "playerctl" "next"; }
+
+    // Brightness
+    XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+10%"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }
+
+    // Escape hatch for keyboard inhibitor
+    Alt+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+
+    // Power off monitors
+    Alt+Shift+P { power-off-monitors; }
+}
+
+spawn-at-startup "qs" "-c" "noctalia-shell"

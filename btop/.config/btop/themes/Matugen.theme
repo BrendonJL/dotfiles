@@ -1,85 +1,85 @@
 # Matugen btop theme - auto-generated from wallpaper
 
 # Main background
-theme[main_bg]="#151217"
+theme[main_bg]="#131313"
 
 # Main text color
-theme[main_fg]="#e8e0e8"
+theme[main_fg]="#e2e2e2"
 
 # Title color for boxes
-theme[title]="#ddb9f8"
+theme[title]="#ffafd1"
 
 # Highlight color for keyboard shortcuts
-theme[hi_fg]="#f3b7bc"
+theme[hi_fg]="#f2bb98"
 
 # Background color of selected item in processes box
-theme[selected_bg]="#2d292e"
+theme[selected_bg]="#2a2a2a"
 
 # Foreground color of selected item in processes box
-theme[selected_fg]="#e8e0e8"
+theme[selected_fg]="#e2e2e2"
 
 # Color of inactive/disabled text
-theme[inactive_fg]="#cdc4ce"
+theme[inactive_fg]="#c6c6c6"
 
 # Color of text on top of graphs
-theme[graph_text]="#e8e0e8"
+theme[graph_text]="#e2e2e2"
 
 # Background color of the percentage meters
-theme[meter_bg]="#221e24"
+theme[meter_bg]="#1f1f1f"
 
 # Misc colors for processes box
-theme[proc_misc]="#e8e0e8"
+theme[proc_misc]="#e2e2e2"
 
 # Box outline colors
-theme[cpu_box]="#ddb9f8"
-theme[mem_box]="#ddb9f8"
-theme[net_box]="#ddb9f8"
-theme[proc_box]="#ddb9f8"
+theme[cpu_box]="#ffafd1"
+theme[mem_box]="#ffafd1"
+theme[net_box]="#ffafd1"
+theme[proc_box]="#ffafd1"
 
 # Box divider line
-theme[div_line]="#968e98"
+theme[div_line]="#919191"
 
 # Temperature graph colors
-theme[temp_start]="#f3b7bc"
-theme[temp_mid]="#d1c1d9"
+theme[temp_start]="#f2bb98"
+theme[temp_mid]="#e1bdca"
 theme[temp_end]="#ffb4ab"
 
 # CPU graph colors
-theme[cpu_start]="#f3b7bc"
-theme[cpu_mid]="#ddb9f8"
-theme[cpu_end]="#d1c1d9"
+theme[cpu_start]="#f2bb98"
+theme[cpu_mid]="#ffafd1"
+theme[cpu_end]="#e1bdca"
 
 # Mem/Disk FREE meter
 theme[free_start]="#ffb4ab"
-theme[free_mid]="#d1c1d9"
-theme[free_end]="#f3b7bc"
+theme[free_mid]="#e1bdca"
+theme[free_end]="#f2bb98"
 
 # Mem/Disk CACHED meter
-theme[cached_start]="#f3b7bc"
-theme[cached_mid]="#ddb9f8"
-theme[cached_end]="#d1c1d9"
+theme[cached_start]="#f2bb98"
+theme[cached_mid]="#ffafd1"
+theme[cached_end]="#e1bdca"
 
 # Mem/Disk AVAILABLE meter
-theme[available_start]="#d1c1d9"
-theme[available_mid]="#f3b7bc"
-theme[available_end]="#ddb9f8"
+theme[available_start]="#e1bdca"
+theme[available_mid]="#f2bb98"
+theme[available_end]="#ffafd1"
 
 # Mem/Disk USED meter
-theme[used_start]="#ddb9f8"
-theme[used_mid]="#d1c1d9"
+theme[used_start]="#ffafd1"
+theme[used_mid]="#e1bdca"
 theme[used_end]="#ffb4ab"
 
 # Download graph colors
-theme[download_start]="#f3b7bc"
-theme[download_mid]="#ddb9f8"
-theme[download_end]="#d1c1d9"
+theme[download_start]="#f2bb98"
+theme[download_mid]="#ffafd1"
+theme[download_end]="#e1bdca"
 
 # Upload graph colors
-theme[upload_start]="#f3b7bc"
-theme[upload_mid]="#d1c1d9"
-theme[upload_end]="#ddb9f8"
+theme[upload_start]="#f2bb98"
+theme[upload_mid]="#e1bdca"
+theme[upload_end]="#ffafd1"
 
 # Process box gradient
-theme[process_start]="#f3b7bc"
-theme[process_mid]="#ddb9f8"
-theme[process_end]="#d1c1d9"
+theme[process_start]="#f2bb98"
+theme[process_mid]="#ffafd1"
+theme[process_end]="#e1bdca"

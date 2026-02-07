@@ -18,9 +18,9 @@
 /* ==================== */
 
 window#waybar {
-  background: alpha(#573a70, 0.85);
-  border-bottom: 2px solid alpha(#ddb9f8, 0.4);
-  color: #f1daff;
+  background: alpha(#792953, 0.85);
+  border-bottom: 2px solid alpha(#ffafd1, 0.4);
+  color: #ffd8e6;
 }
 
 /* ==================== */
@@ -42,7 +42,7 @@ window#waybar {
 #custom-workspaces {
   padding: 2px 4px;
   font-size: 13px;
-  color: #f3b7bc;
+  color: #f2bb98;
 }
 
 /* ==================== */
@@ -64,20 +64,20 @@ window#waybar {
 #custom-scratch_term:hover,
 #custom-scratch_discord:hover,
 #custom-scratch_music:hover {
-  background: alpha(#573a70, 0.4);
-  color: #e8e0e8;
+  background: alpha(#792953, 0.4);
+  color: #e2e2e2;
 }
 
 #custom-scratch_term {
-  color: alpha(#f3b7bc, 0.95);
+  color: alpha(#f2bb98, 0.95);
 }
 
 #custom-scratch_discord {
-  color: alpha(#ddb9f8, 0.95);
+  color: alpha(#ffafd1, 0.95);
 }
 
 #custom-scratch_music {
-  color: alpha(#d1c1d9, 0.95);
+  color: alpha(#e1bdca, 0.95);
 }
 
 /* ==================== */
@@ -87,7 +87,7 @@ window#waybar {
 #custom-clock_btn {
   padding: 2px 8px;
   background: transparent;
-  color: #e8e0e8;
+  color: #e2e2e2;
   border-radius: 0;
   font-weight: 600;
   font-size: 11px;
@@ -96,7 +96,7 @@ window#waybar {
 }
 
 #custom-clock_btn:hover {
-  background: alpha(#573a70, 0.4);
+  background: alpha(#792953, 0.4);
 }
 
 /* ==================== */
@@ -113,7 +113,7 @@ window#waybar {
   padding: 2px 8px;
   margin: 0;
   background: transparent;
-  color: alpha(#cdc4ce, 0.95);
+  color: alpha(#c6c6c6, 0.95);
   border-radius: 0;
   font-size: 13px;
   border: none;
@@ -127,18 +127,18 @@ window#waybar {
 #custom-display_btn:hover,
 #custom-battery_btn:hover,
 #custom-system_btn:hover {
-  background: alpha(#573a70, 0.4);
-  color: #e8e0e8;
+  background: alpha(#792953, 0.4);
+  color: #e2e2e2;
 }
 
 #custom-cava {
   margin-left: 12px;
-  color: alpha(#f3b7bc, 0.95);
+  color: alpha(#f2bb98, 0.95);
 }
 
 /* Individual button colors */
 #custom-audio_btn {
-  color: alpha(#ddb9f8, 0.95);
+  color: alpha(#ffafd1, 0.95);
 }
 
 /* Individual button colors */
@@ -147,32 +147,32 @@ window#waybar {
 }
 
 #custom-bluetooth_btn {
-  color: alpha(#ddb9f8, 0.95);
+  color: alpha(#ffafd1, 0.95);
 }
 
 #custom-network_btn {
-  color: alpha(#f3b7bc, 0.95);
+  color: alpha(#f2bb98, 0.95);
 }
 
 #custom-display_btn {
-  color: alpha(#d1c1d9, 0.95);
+  color: alpha(#e1bdca, 0.95);
 }
 
 #custom-battery_btn {
-  color: alpha(#f3b7bc, 0.95);
+  color: alpha(#f2bb98, 0.95);
 }
 
 #custom-system_btn {
-  color: alpha(#d1c1d9, 0.95);
+  color: alpha(#e1bdca, 0.95);
 }
 
 #custom-colorpicker {
-  color: alpha(#f3b7bc, 0.95);
+  color: alpha(#f2bb98, 0.95);
   padding: 2px 8px;
 }
 
 #custom-colorpicker:hover {
-  background: alpha(#573a70, 0.4);
+  background: alpha(#792953, 0.4);
 }
 
 /* Mic indicator */
@@ -185,7 +185,7 @@ window#waybar {
 }
 
 #custom-mic.mic-inactive {
-  color: alpha(#968e98, 0.4);
+  color: alpha(#919191, 0.4);
 }
 
 /* Camera indicator */
@@ -198,7 +198,7 @@ window#waybar {
 }
 
 #custom-camera.cam-inactive {
-  color: alpha(#968e98, 0.4);
+  color: alpha(#919191, 0.4);
 }
 
 /* Weather animations */
@@ -209,35 +209,35 @@ window#waybar {
 }
 
 #custom-weather.sunny {
-  color: alpha(#f3b7bc, 0.95);
+  color: alpha(#f2bb98, 0.95);
 }
 
 #custom-weather.rain {
-  color: alpha(#ddb9f8, 0.95);
+  color: alpha(#ffafd1, 0.95);
 }
 
 #custom-weather.snow {
-  color: alpha(#cdc4ce, 0.95);
+  color: alpha(#c6c6c6, 0.95);
 }
 
 #custom-weather.storm {
-  color: alpha(#f3b7bc, 0.95);
+  color: alpha(#f2bb98, 0.95);
 }
 
 #custom-weather.cloudy {
-  color: alpha(#968e98, 0.95);
+  color: alpha(#919191, 0.95);
 }
 
 #custom-weather.foggy {
-  color: alpha(#968e98, 0.7);
+  color: alpha(#919191, 0.7);
 }
 
 #custom-weather.windy {
-  color: alpha(#d1c1d9, 0.95);
+  color: alpha(#e1bdca, 0.95);
 }
 
 #custom-weather:hover {
-  background: alpha(#573a70, 0.4);
+  background: alpha(#792953, 0.4);
 }
 
 /* ==================== */
@@ -255,7 +255,7 @@ window#waybar {
 
 #tray > .needs-attention {
   -gtk-icon-effect: highlight;
-  background-color: alpha(#f3b7bc, 0.3);
+  background-color: alpha(#f2bb98, 0.3);
 }
 
 /* ==================== */
@@ -263,14 +263,14 @@ window#waybar {
 /* ==================== */
 
 tooltip {
-  background: alpha(#573a70, 0.95);
-  border: 1px solid alpha(#ddb9f8, 0.4);
+  background: alpha(#792953, 0.95);
+  border: 1px solid alpha(#ffafd1, 0.4);
   border-radius: 0;
   padding: 4px 8px;
 }
 
 tooltip label {
-  color: alpha(#f3b7bc, 0.95);
+  color: alpha(#f2bb98, 0.95);
   font-family: "FiraCode Nerd Font", "JetBrains Mono", monospace;
   font-size: 11px;
 }
@@ -281,15 +281,15 @@ tooltip label {
 
 /* Volume - primary (purple) based */
 #custom-audio_btn.vol-low {
-  color: #ddb9f8;
+  color: #ffafd1;
 }
 
 #custom-audio_btn.vol-mid {
-  color: #d1c1d9;
+  color: #e1bdca;
 }
 
 #custom-audio_btn.vol-warning {
-  color: #f3b7bc;
+  color: #f2bb98;
 }
 
 #custom-audio_btn.vol-high {
@@ -297,16 +297,16 @@ tooltip label {
 }
 
 #custom-audio_btn.muted {
-  color: #968e98;
+  color: #919191;
 }
 
 /* Bluetooth - tertiary (gold) based */
 #custom-bluetooth_btn.bt-connected {
-  color: #f3b7bc;
+  color: #f2bb98;
 }
 
 #custom-bluetooth_btn.bt-on {
-  color: #d1c1d9;
+  color: #e1bdca;
 }
 
 #custom-bluetooth_btn.bt-off {
@@ -319,7 +319,7 @@ tooltip label {
 }
 
 #custom-network_btn.net-disconnected {
-  color: #968e98;
+  color: #919191;
 }
 
 #custom-network_btn.net-poor {
@@ -327,32 +327,32 @@ tooltip label {
 }
 
 #custom-network_btn.net-weak {
-  color: #f3b7bc;
+  color: #f2bb98;
 }
 
 #custom-network_btn.net-good {
-  color: #d1c1d9;
+  color: #e1bdca;
 }
 
 #custom-network_btn.net-strong {
-  color: #ddb9f8;
+  color: #ffafd1;
 }
 
 #custom-network_btn.net-ethernet {
-  color: #ddb9f8;
+  color: #ffafd1;
 }
 
 /* Battery - tertiary (gold) based */
 #custom-battery_btn.bat-full {
-  color: #f3b7bc;
+  color: #f2bb98;
 }
 
 #custom-battery_btn.bat-good {
-  color: #d1c1d9;
+  color: #e1bdca;
 }
 
 #custom-battery_btn.bat-mid {
-  color: #ddb9f8;
+  color: #ffafd1;
 }
 
 #custom-battery_btn.bat-low {
@@ -365,15 +365,15 @@ tooltip label {
 
 /* System - secondary based, reversed (idle is calm) */
 #custom-system_btn.sys-idle {
-  color: #d1c1d9;
+  color: #e1bdca;
 }
 
 #custom-system_btn.sys-low {
-  color: #ddb9f8;
+  color: #ffafd1;
 }
 
 #custom-system_btn.sys-mid {
-  color: #f3b7bc;
+  color: #f2bb98;
 }
 
 #custom-system_btn.sys-high {
@@ -386,20 +386,20 @@ tooltip label {
 
 /* Display - primary based */
 #custom-display_btn.display-connected {
-  color: #ddb9f8;
+  color: #ffafd1;
 }
 
 #custom-display_btn.display-none {
-  color: #968e98;
+  color: #919191;
 }
 
 #custom-news {
-  color: #e8e0e8;
+  color: #e2e2e2;
   padding: 2px 8px;
   min-width: 300px;
   font-size: 11px;
 }
 
 #custom-news:hover {
-  background: alpha(#573a70, 0.4);
+  background: alpha(#792953, 0.4);
 }
