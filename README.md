@@ -20,7 +20,7 @@ stow nvim niri dms zsh starship kitty yazi bashrc bin claude bat git fastfetch m
 
 ## Packages
 
-### Active (ZenaOS + Niri)
+### Stow Packages
 
 | Package | Description |
 |---------|-------------|
@@ -39,12 +39,6 @@ stow nvim niri dms zsh starship kitty yazi bashrc bin claude bat git fastfetch m
 | `starship` | Starship prompt config |
 | `yazi` | Yazi file manager config (keybinds, theme, init.lua) |
 | `zsh` | ZSH config with modern CLI tool aliases |
-
-### Legacy (in git history)
-
-These packages are from a previous Hyprland + KDE setup and remain in the repo history:
-
-`btop` · `cava` · `eww` · `gtk-3.0` · `gtk-4.0` · `hypr` · `konsole` · `newsboat` · `qt5ct` · `qt6ct` · `rofi` · `swaync` · `waybar`
 
 ## System
 

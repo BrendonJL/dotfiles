@@ -1,5 +1,4 @@
 # Secrets - never commit these
-hypr/.config/hypr/hypr.d/secrets.conf
 zsh/.secrets
 *.secrets
 secrets.conf
