@@ -1,0 +1,12 @@
+[Unit]
+Description=OpenRazer Daemon
+After=default.target
+
+[Service]
+Type=forking
+ExecStart=/home/blasley/.nix-profile/bin/openrazer-daemon
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

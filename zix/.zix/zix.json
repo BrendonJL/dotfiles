@@ -1,0 +1,39 @@
+{
+  "current_profile": "default",
+  "profiles": {
+    "default": {
+      "packages": [
+        "bat",
+        "btop",
+        "delta",
+        "eza",
+        "fd",
+        "fzf",
+        "gh",
+        "grim",
+        "kitty",
+        "lazygit",
+        "neovim",
+        "nodejs",
+        "openrazer-daemon",
+        "pavucontrol",
+        "pay-respects",
+        "poetry",
+        "ripdrag",
+        "ripgrep",
+        "satty",
+        "slurp",
+        "starship",
+        "stow",
+        "suricata",
+        "tealdeer",
+        "tree-sitter",
+        "uv",
+        "vivaldi",
+        "yazi",
+        "zoxide",
+        "zsh"
+      ]
+    }
+  }
+}

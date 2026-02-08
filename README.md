@@ -2,18 +2,27 @@
 
 Personal dotfiles for **ZenaOS 43** — a Fedora Atomic-based immutable desktop running **niri** (Wayland tiling compositor) with **DankMaterialShell** status bar, managed with [GNU Stow](https://www.gnu.org/software/stow/).
 
-## Setup
+## Quick Setup
 
 ```bash
-# Clone with sparse checkout (only pulls metadata, not all files)
+git clone --filter=blob:none --sparse https://github.com/BrendonJL/dotfiles.git ~/dotfiles
+cd ~/dotfiles && bash setup/install.sh
+```
+
+The install script handles: Nix packages (via zix), Flatpak apps, Nerd Fonts, stow linking, wallpapers, and prints remaining manual steps.
+
+### Manual Setup
+
+```bash
+# Clone with sparse checkout
 git clone --filter=blob:none --sparse https://github.com/BrendonJL/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 
-# Enable the packages you need
-git sparse-checkout add nvim niri dms zsh starship kitty yazi bashrc bin claude bat git fastfetch matugen satty
+# Enable specific packages
+git sparse-checkout add nvim niri dms zsh starship kitty yazi bashrc bin claude bat git fastfetch matugen satty zix openrazer
 
-# Stow them into your home directory
-stow nvim niri dms zsh starship kitty yazi bashrc bin claude bat git fastfetch matugen satty
+# Stow them
+stow nvim niri dms zsh starship kitty yazi bashrc bin claude bat git fastfetch matugen satty zix openrazer
 ```
 
 > **Note:** If a target file already exists, move it aside first (`mv ~/.config/nvim ~/.config/nvim.bak`) before stowing.
@@ -32,13 +41,23 @@ stow nvim niri dms zsh starship kitty yazi bashrc bin claude bat git fastfetch m
 | `fastfetch` | System info display config |
 | `git` | Git config (GPG signing, delta pager, aliases) |
 | `kitty` | Kitty terminal emulator config |
-| `matugen` | Material You color generation config |
+| `matugen` | Material You color generation templates and config |
 | `niri` | Niri compositor config with DMS keybinds and colors |
 | `nvim` | Neovim/LazyVim with 28 plugin configs and dankcolors theme |
+| `openrazer` | OpenRazer daemon systemd user service |
 | `satty` | Screenshot annotation tool config |
 | `starship` | Starship prompt config |
 | `yazi` | Yazi file manager config (keybinds, theme, init.lua) |
+| `zix` | Nix package manifest (declarative package list) |
 | `zsh` | ZSH config with modern CLI tool aliases |
+
+### Setup (non-stow)
+
+| Path | Contents |
+|------|----------|
+| `setup/install.sh` | Automated setup script for fresh installs |
+| `setup/suricata/` | Suricata IDS/IPS config (suricata.yaml, NFQ rules) |
+| `setup/wallpapers/` | Wallpaper collection for matugen theming |
 
 ## System
 

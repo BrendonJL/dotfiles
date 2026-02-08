@@ -1,0 +1,20 @@
+table inet suricata-nfq {
+    chain input {
+        type filter hook input priority filter; policy accept;
+        ip daddr 239.255.255.250 accept
+        ip6 daddr ff02::/16 accept
+        ip saddr 127.0.0.1 ip daddr 127.0.0.1 accept
+        queue num 0-3 fanout
+    }
+    chain forward {
+        type filter hook forward priority filter; policy accept;
+        queue num 0-3 fanout
+    }
+    chain output {
+        type filter hook output priority filter; policy accept;
+        ip daddr 239.255.255.250 accept
+        ip6 daddr ff02::/16 accept
+        ip saddr 127.0.0.1 ip daddr 127.0.0.1 accept
+        queue num 0-3 fanout
+    }
+}
