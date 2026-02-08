@@ -143,6 +143,9 @@ alias bwunlock='export BW_SESSION=$(bw unlock --raw)'
 export EDITOR=nvim
 export VISUAL=nvim
 
+# Claude Code auto memory (persists learned patterns across sessions)
+export CLAUDE_CODE_DISABLE_AUTO_MEMORY=0
+
 export PATH="$HOME/.cargo/bin:$PATH"
 
 alias wpbg='~/.config/rofi/generate-wallpaper-thumbs.sh'

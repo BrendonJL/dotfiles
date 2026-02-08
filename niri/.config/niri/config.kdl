@@ -387,11 +387,11 @@ window-rule {
 // Launch kitty scratchpad with: kitty --class kitty-scratchpad
 window-rule {
     match app-id="kitty-scratchpad"
-    match app-id="discord"
+    match app-id="com.discordapp.Discord"
     match app-id="org.pulseaudio.pavucontrol"
     match app-id="com.github.wwmm.easyeffects"
-    match app-id="bettersoundcloud"
-    match app-id="org.kde.dolphin"
+    match app-id="soundcloud"
+    match app-id="kitty-yazi"
     open-floating true
     default-column-width { proportion 0.65; }
     default-window-height { proportion 0.7; }

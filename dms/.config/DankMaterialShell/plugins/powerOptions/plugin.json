@@ -1,0 +1,17 @@
+{
+    "id": "powerOptions",
+    "name": "Power Options",
+    "description": "Access power options like shutdown and reboot from the launcher",
+    "version": "1.0.0",
+    "author": "Nazahim",
+    "icon": "extension",
+    "type": "launcher",
+    "capabilities": ["command-execution"],
+    "component": "./PowerOptionsLauncher.qml",
+    "settings": "./PowerOptionsSettings.qml",
+    "trigger": "#",
+    "permissions": [
+        "settings_read",
+        "settings_write"
+    ]
+}

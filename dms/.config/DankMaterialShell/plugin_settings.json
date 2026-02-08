@@ -38,14 +38,15 @@
   },
   "displayManager": {
     "enabled": true,
-    "brightness_eDP-1": 48.84832974137931,
-    "contrast_eDP-1": 48.521686422413794,
-    "brightness_DVI-I-2": 67.529296875,
-    "contrast_DVI-I-2": 96.36651400862068
+    "brightness_eDP-1": 99.78953394396551,
+    "contrast_eDP-1": 100,
+    "brightness_DVI-I-2": 44.01434536637931,
+    "contrast_DVI-I-2": 53.49710398706896,
+    "brightness_DVI-I-1": 49.230536099137936
   },
   "wallpaperDiscovery": {
     "enabled": true,
-    "lastWallpaperUsed": "wallhaven.cc",
+    "lastWallpaperUsed": "pexels",
     "downloadLocation": "/home/blasley/Pictures/Wallpapers",
     "api_unsplash": "zVweXmi7FF_BAoj3RM80EfK_P2QjmZvvCqi3qRziNWs",
     "api_pexels": "DwW7PQJNG0IhoyIKzZgt50yzfWysYOpf2T6bJb3PCgu8ZyYSiNkc9QyY"
@@ -75,5 +76,24 @@
     "windowWidth": 436.5546875,
     "windowHeight": 526.7890625,
     "aiModel": "ollama:qwen2.5:7b"
+  },
+  "dankBatteryAlerts": {
+    "enabled": true
+  },
+  "dankActions": {
+    "enabled": true
+  },
+  "sessionPower": {
+    "enabled": true
+  },
+  "calculator": {
+    "enabled": true,
+    "trigger": "="
+  },
+  "nixMonitor": {
+    "enabled": true
+  },
+  "easyEffects": {
+    "enabled": true
   }
 }

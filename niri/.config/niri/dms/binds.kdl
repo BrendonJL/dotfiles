@@ -90,11 +90,11 @@ binds {
     Mod+Shift+E { quit; }
     Alt+Return hotkey-overlay-title="Open Terminal" { spawn "kitty"; }
     Alt+S hotkey-overlay-title="Scratchpad - Terminal" { spawn "sh" "-c" "niri-toggle -c kitty-scratchpad kitty --class kitty-scratchpad"; }
-    Alt+Shift+A hotkey-overlay-title="Scratchpad - Easy Effects" { spawn "sh" "-c" "niri-toggle -c com.github.wwmm.easyeffects easyeffects"; }
-    Alt+Shift+D hotkey-overlay-title="Scratchpad - Discord" { spawn "sh" "-c" "niri-toggle -c discord discord"; }
-    Alt+Shift+S hotkey-overlay-title="Scratchpad - Soundcloud" { spawn "sh" "-c" "niri-toggle -c bettersoundcloud /home/blasley/BetterSoundCloud-Linux/start.sh"; }
+    Alt+Shift+A hotkey-overlay-title="Scratchpad - Easy Effects" { spawn "sh" "-c" "niri-toggle -c com.github.wwmm.easyeffects flatpak run com.github.wwmm.easyeffects"; }
+    Alt+Shift+D hotkey-overlay-title="Scratchpad - Discord" { spawn "sh" "-c" "niri-toggle -c com.discordapp.Discord flatpak run com.discordapp.Discord"; }
+    Alt+Shift+S hotkey-overlay-title="Scratchpad - Soundcloud" { spawn "sh" "-c" "niri-toggle -c soundcloud vivaldi --class=soundcloud --app=https://soundcloud.com"; }
     Ctrl+Shift+A hotkey-overlay-title="Scratchpad - PavuControl" { spawn "sh" "-c" "niri-toggle -c org.pulseaudio.pavucontrol pavucontrol"; }
-    Ctrl+Shift+D hotkey-overlay-title="Scratchpad - Dolphin" { spawn "sh" "-c" "niri-toggle -c org.kde.dolphin dolphin"; }
+    Ctrl+Shift+D hotkey-overlay-title="Scratchpad - Yazi" { spawn "sh" "-c" "niri-toggle -c kitty-yazi kitty --class kitty-yazi -e yazi"; }
     // Screen recording - toggle on/off
     Mod+Shift+P hotkey-overlay-title="Record Screen" { spawn "niri-record"; }
     Mod+Ctrl+Shift+P hotkey-overlay-title="Record Region" { spawn "niri-record" "region"; }

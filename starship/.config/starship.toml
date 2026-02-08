@@ -96,12 +96,12 @@ symbol = ' '
 
 [character]
 format = "$symbol "
-success_symbol = "[◎](bold italic bright-magenta)"
-error_symbol = "[○](italic bright-red)"
-vimcmd_symbol = "[■](italic bold bright-cyan)"
-vimcmd_replace_one_symbol = "[◌](bold yellow)"
-vimcmd_replace_symbol = "[□](bold yellow)"
-vimcmd_visual_symbol = "[▼](bold bright-blue)"
+success_symbol = "[❯](bold italic bright-magenta)"
+error_symbol = "[❯](italic bright-red)"
+vimcmd_symbol = "[❮](italic bold bright-cyan)"
+vimcmd_replace_one_symbol = "[❮](bold yellow)"
+vimcmd_replace_symbol = "[❮](bold yellow)"
+vimcmd_visual_symbol = "[❮](bold bright-blue)"
 
 [env_var.VIMSHELL]
 format = "[$env_value]($style)"
@@ -110,35 +110,35 @@ style = 'bold italic bright-cyan'
 [sudo]
 format = "[$symbol]($style)"
 style = "bold italic bright-purple"
-symbol = "⋈┈"
+symbol = " "
 disabled = false
 
 [username]
 style_user = "bold italic bright-magenta"
 style_root = "bold italic bright-red"
-format = "[⭘ $user]($style) "
+format = "[ $user]($style) "
 disabled = false
 show_always = false
 
 [directory]
-home_symbol = "⌂"
+home_symbol = " "
 truncation_length = 2
-truncation_symbol = "□ "
-read_only = " ◈"
+truncation_symbol = "…/"
+read_only = "  "
 use_os_path_sep = true
 style = "bold italic bright-cyan"
 format = '[$path]($style)[$read_only]($read_only_style)'
 repo_root_style = 'bold bright-magenta'
-repo_root_format = '[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) [△](bold bright-magenta)'
+repo_root_format = '[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) [ ](bold bright-magenta)'
 
 [cmd_duration]
-format = "[◄ $duration ](bold italic bright-purple)"
+format = "[ $duration ](bold italic bright-purple)"
 min_time = 500
 
 [jobs]
 format = "[$symbol$number]($style) "
 style = "bold bright-cyan"
-symbol = "[▶](bold italic bright-magenta)"
+symbol = "[ ](bold italic bright-magenta)"
 
 [localip]
 ssh_only = true
@@ -153,12 +153,12 @@ utc_time_offset = "local"
 style = "italic dimmed bright-purple"
 
 [battery]
-format = "[ $percentage $symbol]($style)"
-full_symbol = "█"
-charging_symbol = "[↑](italic bold green)"
-discharging_symbol = "↓"
-unknown_symbol = "░"
-empty_symbol = "▃"
+format = "[$symbol $percentage]($style)"
+full_symbol = "󰁹"
+charging_symbol = "[󰂄](italic bold green)"
+discharging_symbol = "󰂃"
+unknown_symbol = "󰂑"
+empty_symbol = "󰂎"
 
 [[battery.display]]
 threshold = 20
@@ -173,16 +173,16 @@ threshold = 70
 style = "italic bold bright-magenta"
 
 [git_branch]
-format = " [$branch(:$remote_branch)]($style)"
-symbol = "[△](bold bright-magenta)"
+format = " [ $branch(:$remote_branch)]($style)"
+symbol = ""
 style = "bold italic bright-cyan"
-truncation_symbol = "⋯"
+truncation_symbol = "…"
 truncation_length = 11
 ignore_branches = ["main", "master"]
 only_attached = true
 
 [git_metrics]
-format = '([▴$added]($added_style))([▿$deleted]($deleted_style))'
+format = '([ +$added]($added_style))([ -$deleted]($deleted_style))'
 added_style = 'bold italic green'
 deleted_style = 'bold italic red'
 ignore_submodules = true
@@ -190,17 +190,17 @@ disabled = false
 
 [git_status]
 style = "bold italic bright-magenta"
-format = "([⎪$ahead_behind$staged$modified$untracked$renamed$deleted$conflicted$stashed⎥]($style))"
-conflicted = "[◪◦](bold bright-red)"
-ahead = "[▴│[${count}](bold bright-cyan)│](bold italic green)"
-behind = "[▿│[${count}](bold bright-cyan)│](bold italic red)"
-diverged = "[◇ ▴┤[${ahead_count}](bold white)│▿┤[${behind_count}](bold white)│](bold italic bright-magenta)"
-untracked = "[◌◦](bold bright-yellow)"
-stashed = "[◃◈](bold bright-purple)"
-modified = "[●◦](bold yellow)"
-staged = "[▪┤[$count](bold bright-cyan)│](bold italic bright-cyan)"
-renamed = "[◎◦](bold bright-magenta)"
-deleted = "[✕](bold red)"
+format = "([$ahead_behind$staged$modified$untracked$renamed$deleted$conflicted$stashed]($style))"
+conflicted = "[ ](bold bright-red)"
+ahead = "[ ${count}](bold italic green)"
+behind = "[ ${count}](bold italic red)"
+diverged = "[ ${ahead_count}  ${behind_count}](bold italic bright-magenta)"
+untracked = "[ ](bold bright-yellow)"
+stashed = "[ ](bold bright-purple)"
+modified = "[ ](bold yellow)"
+staged = "[ ${count}](bold italic bright-cyan)"
+renamed = "[ ](bold bright-magenta)"
+deleted = "[ ](bold red)"
 
 [deno]
 format = " [deno](italic bright-purple) [∫ $version](bold bright-cyan)"
@@ -213,7 +213,7 @@ symbol = "⨀ "
 style = "bold bright-magenta"
 
 [nodejs]
-format = " [node](italic bright-purple) [◫ ($version)](bold bright-green)"
+format = " [node](italic bright-purple) [ ($version)](bold bright-green)"
 version_format = "${raw}"
 detect_files = ["package-lock.json", "yarn.lock"]
 detect_folders = ["node_modules"]
@@ -221,7 +221,7 @@ detect_extensions = []
 
 [python]
 format = " [py](italic bright-purple) [${symbol}${version}]($style)[ ($virtualenv)]($style)"
-symbol = "[⌉](bold bright-cyan)⌊ "
+symbol = " "
 version_format = "${raw}"
 style = "bold bright-magenta"
 
@@ -233,14 +233,14 @@ style = "bold bright-red"
 
 [rust]
 format = " [rs](italic bright-purple) [$symbol$version]($style)"
-symbol = "⊃ "
+symbol = " "
 version_format = "${raw}"
 style = "bold bright-magenta"
 
 [package]
 format = " [pkg](italic bright-purple) [$symbol$version]($style)"
 version_format = "${raw}"
-symbol = "◨ "
+symbol = "󰏗 "
 style = "bold bright-cyan"
 
 [swift]
@@ -251,11 +251,11 @@ version_format = "${raw}"
 
 [nix_shell]
 style = 'bold italic bright-purple'
-symbol = '✶'
-format = '[$symbol nix⎪$state⎪]($style) [$name](italic bright-cyan)'
-impure_msg = '[⌽](bold bright-red)'
-pure_msg = '[⌾](bold bright-green)'
-unknown_msg = '[◌](bold bright-yellow)'
+symbol = ' '
+format = '[$symbol nix $state]($style) [$name](italic bright-cyan)'
+impure_msg = '[](bold bright-red)'
+pure_msg = '[](bold bright-green)'
+unknown_msg = '[](bold bright-yellow)'
 
 [aws]
 disabled = true
@@ -276,11 +276,11 @@ format = " [conda](italic bright-purple) [$symbol$environment]($style)"
 style = "bold bright-cyan"
 
 [docker_context]
-symbol = "◧ "
+symbol = " "
 format = " [docker](italic bright-purple) [$symbol$context]($style)"
 style = "bold bright-cyan"
 
 [golang]
-symbol = "∩ "
+symbol = " "
 format = " [go](italic bright-purple) [$symbol($version)]($style)"
 style = "bold bright-cyan"
