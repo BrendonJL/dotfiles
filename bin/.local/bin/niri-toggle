@@ -69,6 +69,8 @@ if [[ "$window_ws" == "$stash_ws_id" ]]; then
     niri msg action focus-window --id "$window_id"
 elif [[ "$window_ws" == "$current_ws_id" ]]; then
     # Window is on current workspace - tile it, then stash
+    # Screen transition freezes the display so the workspace bump is invisible
+    niri msg action do-screen-transition
     niri msg action move-window-to-tiling --id "$window_id"
     niri msg action move-window-to-workspace --window-id "$window_id" --focus false "$STASH_WS"
 else
