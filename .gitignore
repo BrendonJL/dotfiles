@@ -7,6 +7,10 @@ secrets.conf
 # DMS plugin repos (will be re-downloaded)
 dms/.config/DankMaterialShell/plugins/.repos/
 
+# Yazi plugins (managed by ya pkg)
+yazi/.config/yazi/plugins/
+yazi/.config/yazi/package.toml
+
 # Cache and temp files
 *.swp
 *.swo

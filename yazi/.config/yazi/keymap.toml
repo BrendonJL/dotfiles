@@ -1,0 +1,11 @@
+[mgr]
+prepend_keymap = [
+  { on = "<C-h>", run = "hidden toggle", desc = "Toggle hidden files" },
+  { on = "T", run = "shell -- kitty --detach %s --block", desc = "Open terminal here" },
+  { on = "Y", run = [ "yank", "escape --visual --select" ], desc = "Yank and exit visual" },
+  { on = "F", run = "plugin fzf", desc = "Fzf search" },
+  { on = "z", run = "plugin zoxide", desc = "Zoxide jump" },
+  { on = "y", run = [ "yank", '''shell -- for path in %s; do echo "file://$path"; done | wl-copy -t text/uri-list''' ], desc = "Yank + copy path to clipboard" },
+  { on = "<C-n>", run = "shell -- ripdrag -x %s", desc = "Drag and drop files" },
+  { on = "M", run = "plugin mount", desc = "Mount/eject drives" },
+]

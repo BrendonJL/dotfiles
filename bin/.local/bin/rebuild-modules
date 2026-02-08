@@ -1,0 +1,46 @@
+#!/bin/bash
+# Rebuild EVDI and OpenRazer kernel modules after kernel update
+set -e
+
+echo "=== Building EVDI for kernel $(uname -r) ==="
+cd /tmp
+rm -rf evdi
+git clone https://github.com/DisplayLink/evdi.git
+cd evdi/module
+make LLVM=1 CFLAGS="-Wno-error"
+
+echo ""
+echo "=== Building OpenRazer for kernel $(uname -r) ==="
+cd /tmp
+rm -rf openrazer
+git clone https://github.com/openrazer/openrazer.git
+cd openrazer/driver
+make -C /lib/modules/$(uname -r)/build M=$(pwd) modules LLVM=1 CFLAGS="-Wno-error"
+
+echo ""
+echo "=== Installing modules ==="
+sudo cp /tmp/evdi/module/evdi.ko /var/lib/extra-modules/evdi.ko
+sudo cp /tmp/openrazer/driver/razermouse.ko /var/lib/extra-modules/
+sudo cp /tmp/openrazer/driver/razerkbd.ko /var/lib/extra-modules/
+sudo cp /tmp/openrazer/driver/razerkraken.ko /var/lib/extra-modules/
+sudo cp /tmp/openrazer/driver/razeraccessory.ko /var/lib/extra-modules/
+
+echo ""
+echo "=== Restoring SELinux contexts ==="
+sudo restorecon -Rv /var/lib/extra-modules/ /var/lib/displaylink/ /var/lib/openrazer/
+
+echo ""
+echo "=== Loading modules ==="
+sudo insmod /var/lib/extra-modules/evdi.ko 2>/dev/null || true
+sudo insmod /var/lib/extra-modules/razermouse.ko 2>/dev/null || true
+sudo insmod /var/lib/extra-modules/razerkbd.ko 2>/dev/null || true
+sudo insmod /var/lib/extra-modules/razerkraken.ko 2>/dev/null || true
+sudo insmod /var/lib/extra-modules/razeraccessory.ko 2>/dev/null || true
+
+echo ""
+echo "=== Restarting services ==="
+sudo systemctl restart displaylink-driver
+systemctl --user restart openrazer-daemon
+
+echo ""
+echo "Done! Monitors and Razer devices should be back."

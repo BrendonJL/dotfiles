@@ -1,0 +1,7 @@
+#!/home/blasley/.local/share/uv/tools/mcp-memory-service/bin/python3
+"""Wrapper to run mcp-memory-service in stdio mode for Claude Code."""
+import os
+os.environ.setdefault("MCP_MEMORY_STORAGE_PATH", os.path.expanduser("~/.claude/memory-db"))
+
+from mcp_memory_service.mcp_server import mcp
+mcp.run("stdio")

@@ -1,0 +1,51 @@
+[manager]
+border_style = { fg = "#919191" }
+cwd = { fg = "#ffb4a5", bold = true }
+hovered = { bg = "#1f1f1f", bold = true }
+preview_hovered = { bg = "#1f1f1f" }
+tab_active = { fg = "#5f1609", bg = "#ffb4a5" }
+tab_inactive = { fg = "#c6c6c6", bg = "#1f1f1f" }
+count_selected = { fg = "#5f1609", bg = "#ffb4a5" }
+count_copied = { fg = "#3d2f04", bg = "#dcc48c" }
+count_cut = { fg = "#690005", bg = "#ffb4ab" }
+
+[status]
+separator_open = ""
+separator_close = ""
+mode_normal = { fg = "#5f1609", bg = "#ffb4a5", bold = true }
+mode_select = { fg = "#442a24", bg = "#e7bdb4", bold = true }
+mode_unset = { fg = "#3d2f04", bg = "#dcc48c", bold = true }
+progress_label = { fg = "#e2e2e2", bold = true }
+progress_normal = { fg = "#ffb4a5" }
+progress_error = { fg = "#ffb4ab" }
+perm_read = { fg = "#ffb4a5" }
+perm_write = { fg = "#ffb4ab" }
+perm_exec = { fg = "#dcc48c" }
+perm_sep = { fg = "#919191" }
+
+[filetype]
+rules = [
+  { mime = "image/*", fg = "#dbaa7b" },
+  { mime = "video/*", fg = "#9bd66e" },
+  { mime = "audio/*", fg = "#e04782" },
+  { mime = "application/zip", fg = "#bf9289" },
+  { mime = "application/gzip", fg = "#bf9289" },
+  { mime = "application/x-tar", fg = "#bf9289" },
+  { mime = "application/x-bzip2", fg = "#bf9289" },
+  { mime = "application/x-7z-compressed", fg = "#bf9289" },
+  { mime = "application/x-xz", fg = "#bf9289" },
+  { name = "*.md", fg = "#c56652" },
+  { name = "*.rs", fg = "#e05f94" },
+  { name = "*.go", fg = "#ffb4a5" },
+  { name = "*.js", fg = "#dbaa7b" },
+  { name = "*.ts", fg = "#c56652" },
+  { name = "*.py", fg = "#9bd66e" },
+  { name = "*.lua", fg = "#a06c56" },
+  { name = "*.kdl", fg = "#bd5c5b" },
+  { name = "*.toml", fg = "#bd5c5b" },
+  { name = "*.json", fg = "#dbaa7b" },
+  { name = "*.yaml", fg = "#dbaa7b" },
+  { name = "*.yml", fg = "#dbaa7b" },
+  { name = "*", fg = "#e2e2e2" },
+  { name = "*/", fg = "#ffb4a5" },
+]
